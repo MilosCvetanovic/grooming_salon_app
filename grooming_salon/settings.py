@@ -9,8 +9,10 @@ https://docs.djangoproject.com/en/6.0/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/6.0/ref/settings/
 """
-
+import os
 from pathlib import Path
+
+from django.urls import reverse_lazy
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -25,14 +27,14 @@ SECRET_KEY = 'django-insecure-2)+w+-s8no_v&&=*+(x5+_!36g5+!0rg-gor=+y%^b$s)=0%e3
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ["*"]
 
 
 # Application definition
 
-# MY_APPS = [
-#
-# ]
+MY_APPS = [
+    'grooming_salon.accounts'
+]
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -41,7 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-]
+] + MY_APPS
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -111,16 +113,38 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/6.0/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+# Podešavamo jezik na Srpski Latinica
+# LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'sr-Latn'
+LANGUAGES = [
+    ("sr-latn", "Serbian Latin"),
+]
 
-TIME_ZONE = 'UTC'
+# Podešavamo vremensku zonu
+# TIME_ZONE = 'UTC'
+TIME_ZONE = 'Europe/Belgrade'
 
 USE_I18N = True
 
 USE_TZ = True
 
+# Default primary key field type
+# https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
+
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/6.0/howto/static-files/
 
 STATIC_URL = 'static/'
+
+# Neophodno za rad sa medijskim datotekama
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR / 'media/')
+
+# Govorimo Djangu da ne koristi podrazumevani User model, već da koristi custom User model
+AUTH_USER_MODEL = 'accounts.AppUser'
+
+# Definisemo URL gde nas Prijava i Odjava redirektuju
+LOGIN_REDIRECT_URL = reverse_lazy('profile_details')
+LOGOUT_REDIRECT_URL = reverse_lazy('login')

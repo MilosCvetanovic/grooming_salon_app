@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Obrišite nalog | Mila salon{% endblock %}
+
+{% block content %}
+
+    <div class="delete-profile-container">
+
+        <div class="delete-profile">
+
+            <h2>Obrišite nalog</h2>
+
+            <div class="image-box">
+                <img src="{% static 'images/sad-dog.png' %}" alt="Tužni pas">
+            </div>
+
+            <p>Da li ste sigurni da želite da obrišete svoj nalog? Ovim ćete izgubiti sve permisije i obrisati profile vaših pasa.</p>
+
+            <div class="actions">
+                <a href="{% url 'profile_edit' %}" class="btn-stay">
+                    <img src="{% static 'images/dog-paw.svg' %}" alt="sapa">NE, želim da ostanem</a>
+
+                <form method="POST" action="{% url 'profile_delete' %}">
+                    {% csrf_token %}
+                    <button type="submit" class="link-delete">DA, želim da obrišem svoj nalog</button>
+                </form>
+
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

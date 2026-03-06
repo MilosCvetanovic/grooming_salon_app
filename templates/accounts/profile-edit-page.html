@@ -1,0 +1,108 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Izmenite profil | Mila salon{% endblock %}
+
+{% block content %}
+
+    <div class="main-container">
+
+        <div class="main-box">
+
+            <h2>Izmenite profil</h2>
+            <a href="{% url 'profile_details' %}" class="ds-close-x">&times;</a>
+            <p class="guideline">Izmenite podatke na svom profilu</p>
+
+            <form method="post" action="{% url 'profile_edit'  %}" enctype="multipart/form-data">
+
+                {% csrf_token %}
+
+                <!-- Ime -->
+                <div class="form-group">
+                    {{ form.first_name.label_tag }}
+                    {{ form.first_name }}
+                    {% if form.first_name.errors %}
+                        <div class="form-error">{{ form.first_name.errors }}</div>
+                    {% endif %}
+                </div>
+
+                <!-- Prezime -->
+                <div class="form-group">
+                    {{ form.last_name.label_tag }}
+                    {{ form.last_name }}
+                    {% if form.last_name.errors %}
+                        <div class="form-error">{{ form.last_name.errors }}</div>
+                    {% endif %}
+                </div>
+
+                <!-- Telefon -->
+                <div class="form-group">
+                    {{ form.phone.label_tag }}
+                    {{ form.phone }}
+                    {% if form.phone.errors %}
+                        <div class="form-error">{{ form.phone.errors }}</div>
+                    {% endif %}
+                </div>
+
+                <!-- Fotografija profila -->
+                <div class="form-group">
+                    {{ form.picture.label_tag }}
+
+                    <div class="current-image-container">
+                        <div class="thumbnail-wrapper">
+                            {{ form.remove_picture }}
+
+                            <div class="image-container">
+                                <label for="{{ form.remove_picture.id_for_label }}"
+                                       class="delete-trigger-clean"
+                                       {% if not profile.picture %} style="display: none;" {% endif %}>
+                                </label>
+
+                                <img src="{% if profile.picture %}{{ profile.picture.url }}{% else %}{% static 'images/profilephotogeneric.png' %}{% endif %}"
+                                     alt="fotografija profila"
+                                     class="profile-thumbnail current-photo">
+
+                                <img src="{% static 'images/profilephotogeneric.png' %}"
+                                     alt="fotografija profila"
+                                     class="profile-thumbnail generic-photo-placeholder">
+                            </div>
+
+                            <div class="file-info">
+
+                                <span class="label-text"><strong>Trenutna fotografija:</strong></span>
+                                <span class="file-name-val">
+                                    {% if profile.picture %}{{ profile.filename }}{% else %}Nema fotografije{% endif %}
+                                </span>
+
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="file-upload-wrapper">
+                        {{ form.picture }}
+
+                        <label for="photo-input" class="custom-file-upload">
+                            <i class="fa fa-upload"></i> Izaberite fotografiju
+                        </label>
+
+                        {% if form.picture.errors %}
+                            <div class="form-error">{{ form.picture.errors }}</div>
+                        {% endif %}
+                    </div>
+                </div>
+
+                <button type="submit" class="btn-submit">Izmeni</button>
+
+            </form>
+
+        <p class="redirection-link" >Želite da promenite lozinku? <a href="{% url 'password_change' %}">Promenite lozinku</a></p>
+        <p class="redirection-link" >Želite da obrišete nalog? <a href="{% url 'profile_delete' %}">Obrišite nalog</a></p>
+
+        </div>
+    </div>
+
+    {% block extra_js %}
+        {% include 'includes/image_preview_js.html' %}
+    {% endblock %}
+
+{% endblock %}

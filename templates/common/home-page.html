@@ -1,0 +1,216 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Početna | Mila salon{% endblock %}
+
+{% block content %}
+<!--------------------------------------------------------------------------------------------------------------------->
+
+    <section class="containerSmall hero">
+
+        <div class="heroLeft">
+
+            <h2>Nega pasa kakvu<br>niste videli do sada!</h2>
+
+            <p>
+                Na prvom mestu nam je da se pas oseća prijatno i da nema straha od ulepšavanja!
+                <br>
+                Nalazimo se na Konjarniku u opštini Zvezdara, ulica Luneta Milovanovića 13v. Kod nas se svi tretmani rade sa
+                puno ljubavi i kroz igru bez ikakvog uspavljivanja (sediranja) i vezivanja. Svaki pas dobija svoj termin
+                tako da nema kontakta sa drugim psima i samim tim pas se oseća lepše, smirenije, sva pažnja i vreme je
+                usmereno samo na njega.
+            </p>
+
+            <div id="heroActions">
+                <div class="heroAction heroActionMap">
+                    <img src="{% static 'images/lokacija.svg' %}" alt="Lokacija">
+                    <a target="_blank" href="https://maps.app.goo.gl/FVdm4PFm4ZdtLVkH8">Luneta Milovanovića 13v</a>
+                </div>
+
+                <div class="heroAction">
+                    {% if request.user.is_authenticated %}
+                        <a id="schedule-btn" href="{% url 'services' %}" title="Zakazivanje">ZAKAŽITE TERMIN ➜</a>
+                    {% else %}
+                        <a id="schedule-btn" href="{% url 'login' %}" title="Zakazivanje">ZAKAŽITE TERMIN ➜</a>
+                    {% endif %}
+                </div>
+
+            </div>
+        </div>
+
+        <div class="heroRight">
+            <img class="heroImage" src="{% static 'images/Group93.png' %}" alt="Pas">
+            <img class="paw paw1" src="{% static 'images/Sapa.svg' %}" alt="Šapa">
+            <img class="paw paw2" src="{% static 'images/Sapa.svg' %}" alt="Šapa">
+        </div>
+
+    </section>
+
+    <section id="gallery"
+            data-aos="fade-down"
+            data-aos-mirror="true"
+            data-aos-duration="1000"
+            data-aos-once="true"
+            class="containerSmall gallery">
+
+        <h2>Galerija</h2>
+
+        <p>Pogledajte naše zadovoljne i srećne pse nakon tretmana!</p>
+
+        <div class="glide glideOne">
+            <div data-glide-el="track" class="glide__track">
+                <ul class="glide__slides">
+                    {% for i in image_range %}
+                        <li>
+                            <a title="Pas" data-fslightbox="gallery"
+                               href="{% static 'images/gallery/original/' %}{{ i }}.jpg">
+                                <img src="{% static 'images/gallery/crops/' %}{{ i }}.webp" alt="Pas">
+                            </a>
+                        </li>
+                    {% endfor %}
+                </ul>
+            </div>
+
+            <div class="glide__arrows" data-glide-el="controls">
+                <button class="glide__arrow glide__arrow--left" data-glide-dir="<" aria-label="left">
+                    <img src="{% static 'images/chevron-left.svg' %}" alt="Levo">
+                </button>
+                <button class="glide__arrow glide__arrow--right" data-glide-dir=">" aria-label="right">
+                    <img src="{% static 'images/chevron-right.svg' %}" alt="Levo">
+                </button>
+            </div>
+
+        </div>
+
+        <h2>Čuvanje i šetnja pasa</h2>
+
+        <div class="customContact">
+            <img src="{% static 'images/phone-book.svg' %}" alt="Kontakt">
+            <a title="Telefon" href="tel:+381600777688"><span>+381 60 077 76 88</span></a>
+        </div>
+
+    </section>
+
+    <section
+            data-aos="fade-up"
+            data-aos-mirror="true"
+            data-aos-duration="1000"
+            data-aos-once="true"
+            id="services" class="containerSmall services">
+
+        <h2>Naše usluge</h2>
+
+        <div class="serviceWrapper">
+            {% for service in services %}
+                <div class="service">
+                    <img src="{{ service.image.url }}" alt="{{ service.name }}">
+                    <h3>{{ service.name }}</h3>
+                </div>
+            {% endfor %}
+        </div>
+
+    </section>
+
+    <section id="whyUs"
+            data-aos="fade-right"
+            data-aos-duration="1000"
+            data-aos-once="true"
+            class="containerSmall whyUs">
+
+        <h2>Zašto baš mi?</h2>
+
+        <div id="whyUsContainer">
+            <div id="whyUsLeft">
+               <div class="reasons">
+
+                   <div class="reason blue">
+                       <img src="{% static 'images/Vector-1.svg' %}" alt="Check">
+                       <span>Grumer sa višegodišnjim iskustvom</span>
+                   </div>
+
+                   <div class="reason green">
+                       <img src="{% static 'images/Vector.svg' %}" alt="Zvezda">
+                       <span>Ne vezujemo psa prilikom tretmana</span>
+                   </div>
+
+                   <div class="reason purple">
+                       <img src="{% static 'images/gift-box.svg' %}" alt="Poklon">
+                       <span>Poklon uz svaki tretman</span>
+                   </div>
+
+                   <div class="reason yellow">
+                       <img src="{% static 'images/appointment.svg' %}" alt="Zakazivanje">
+                       <span>Zakazivanje termina online</span>
+                   </div>
+
+               </div>
+
+                <div class="heroReview">
+                    <h2>Recenzije</h2>
+                </div>
+
+                <div class="testimonials">
+                    <div class="testimonial">
+
+                        <div class="person">
+                            <img class="profile-thumbnail" src="{% static 'images/avatar.png' %}" alt="Jovana">
+                            <span><strong>Jovana Ilić</strong></span>
+
+                            <div class="rating-stars stars-align">
+                                {% for i in "12345" %}
+                                    <span class="star-icon filled"><i class="fa fa-star"></i></span>
+                                {% endfor %}
+                            </div>
+                        </div>
+
+                        <div class="comment">
+                            Fenomenalna usluga i ljubaznost! Pas je izašao srećan i mirišljav! Sve preporuke  :)
+                        </div>
+
+                    </div>
+
+                    <div class="testimonial">
+                        <div class="person">
+                            <img class="profile-thumbnail" src="{% static 'images/avatar1.png' %}" alt="Nikola">
+                            <span><strong>Nikola Petrović</strong></span>
+
+                            <div class="rating-stars stars-align">
+                                {% for i in "12345" %}
+                                    <span class="star-icon filled"><i class="fa fa-star"></i></span>
+                                {% endfor %}
+                            </div>
+                        </div>
+
+                        <div class="comment">
+                            Jako sam zadovoljan, niko do sada nije ošišao ovako lepo mog ljubimca. Vratiću se sigurno!
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="see-more-wrapper">
+                    <a class="add-dog-btn see-more" href="{% url 'review_details' %}">Vidi još <i class="fa-solid fa-arrow-down"></i></a>
+                </div>
+
+            </div>
+
+            <div id="whyUsRight">
+                <img src="{% static 'images/cute-small-dog-sitting-towel1.png' %}" alt="Kuca">
+                <img class="paw paw1" src="{% static 'images/Sapa.svg' %}" alt="Šapa">
+                <img class="paw paw2" src="{% static 'images/Sapa.svg' %}" alt="Šapa">
+            </div>
+
+        </div>
+    </section>
+
+    <section
+            data-aos="fade-down"
+            data-aos-once="true"
+            data-aos-duration="1000"
+            class="containerSmall locationSection">
+
+        <h2>Kako do nas?</h2>
+        <iframe title="google maps" src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d707.9556815047814!2d20.5141833!3d44.7844193!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x475a70978e209c7b%3A0x5e80bc6a87126e8!2sLuneta%20Milovanovi%C4%87a%2013%2C%20Beograd!5e0!3m2!1sen!2srs!4v1708819083612!5m2!1sen!2srs" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+    </section>
+
+{% endblock %}

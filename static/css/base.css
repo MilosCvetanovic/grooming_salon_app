@@ -1,0 +1,361 @@
+:root {
+  --orange: #f3811f;
+  --orangeMedium:#F3A967;
+  --orangeLight:#FFEFDA;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+ul, li {
+  font: inherit;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+a {
+  text-decoration: none;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+svg {
+  pointer-events: none;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+  font-style: normal;
+  color: black;
+}
+
+body.freeze {
+  overflow: hidden;
+}
+
+a {
+  color: black;
+  transition: 0.2s ease color;
+  font-weight: 500;
+}
+
+@media (hover: hover) {
+  a:hover {
+    color: var(--orange);
+  }
+}
+
+@font-face {
+  font-family: "RF Krabuler Regular";
+  src: url("../font/RFKrabulerRegular.ttf") format("truetype");
+}
+/* ------------------------------------------------------------------------------------------------------------------ */
+
+.containerLarge {
+  padding: 1rem 12rem;
+}
+
+@media (max-width: 1400px) {
+  .containerLarge {
+    padding: 1rem 5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .containerLarge {
+    padding: 1rem;
+  }
+}
+
+img {
+  display: block;
+}
+
+.underline {
+  text-decoration: underline;
+}
+/* ------------------------------------------------------------------------------------------------------------------ */
+
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+@media (max-width: 1024px) {
+  header #logo img {
+    width: 100px;
+  }
+}
+
+header nav {
+  z-index: 9;
+}
+
+@media (max-width: 768px) {
+  header nav {
+    position: fixed;
+    left: -500px;
+    top: 0;
+    transition: 0.3s ease left;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+    background: var(--orangeLight);
+    height: 100vh;
+    width: 60vw;
+    padding: 4rem 1rem;
+  }
+  header nav.show {
+    left: 0;
+  }
+}
+
+header nav #close {
+  display: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+@media (max-width: 768px) {
+  header nav #close {
+    display: block;
+    position: absolute;
+    right: 1rem;
+    top: 1rem;
+    cursor: pointer;
+  }
+  header nav #close svg {
+    width: 22px;
+    fill: black;
+  }
+}
+
+header nav ul {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+@media (max-width: 768px) {
+  header nav ul {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+header nav ul li a {
+  font-size: 1.3rem;
+  -webkit-tap-highlight-color: transparent;
+}
+
+@media (max-width: 1024px) {
+  header nav ul li a {
+    font-size: 1rem;
+  }
+}
+
+header #hamburger {
+  display: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+@media (max-width: 768px) {
+  header #hamburger {
+    display: block;
+    cursor: pointer;
+  }
+  header #hamburger svg {
+    width: 22px;
+    fill: black;
+  }
+}
+
+header div form button i {
+  font-size: 1.3rem;
+  -webkit-tap-highlight-color: transparent;
+}
+
+@media (max-width: 1024px) {
+  header div form button i {
+    font-size: 1rem;
+  }
+}
+
+header div a {
+  font-size: 1.3rem;
+  -webkit-tap-highlight-color: transparent;
+}
+
+@media (max-width: 1024px) {
+  header div a {
+    font-size: 1rem;
+  }
+}
+/* ------------------------------------------------------------------------------------------------------------------ */
+
+#login-btn {
+    background: #ffffff;
+    color: #1a1a1a;
+    padding: 12px 28px;
+    border-radius: 50px;
+
+    font-family: "Inter", system-ui, -apple-system, sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+
+    border: 1px solid rgba(0, 0, 0, 0.08);
+    box-shadow:
+        inset 0 1.5px 1px rgba(255, 255, 255, 1),
+        0 1px 2px rgba(0, 0, 0, 0.04),
+        0 4px 10px rgba(0, 0, 0, 0.03);
+
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+#login-btn:hover {
+    background: #ffffff;
+    border-color: rgba(0, 0, 0, 0.15);
+    color: #000;
+
+    transform: translateY(-2px);
+    box-shadow:
+        inset 0 1.5px 1px rgba(255, 255, 255, 1),
+        0 2px 4px rgba(0, 0, 0, 0.04),
+        0 12px 20px rgba(0, 0, 0, 0.06);
+}
+
+#login-btn:active {
+    transform: translateY(0) scale(0.97);
+    box-shadow:
+        inset 0 2px 4px rgba(0, 0, 0, 0.06);
+    transition: all 0.1s ease;
+}
+
+@media (max-width: 768px) {
+    #login-btn {
+        padding: 8px 18px;
+        font-size: 15px;
+        letter-spacing: 0.2px;
+    }
+}
+
+@media (max-width: 480px) {
+    #login-btn {
+        padding: 6px 14px;
+        font-size: 14px;
+        border-width: 1px;
+    }
+}
+/* ------------------------------------------------------------------------------------------------------------------ */
+
+footer {
+  background: var(--orangeMedium);
+  z-index: 1;
+  position: relative;
+}
+
+footer.containerLarge {
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+}
+
+footer nav {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 768px) {
+  footer nav {
+    gap: 4rem;
+  }
+}
+
+footer nav ul {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+@media (max-width: 1200px) {
+  footer nav ul {
+    width: 45%;
+  }
+}
+
+@media (max-width: 768px) {
+  footer nav ul {
+    width: 100%;
+  }
+}
+
+footer nav ul li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+}
+
+footer nav ul li h3 {
+  margin-bottom: 1rem;
+  width: 100%;
+}
+
+footer nav ul li a {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+footer nav ul li a.location {
+  align-items: flex-start;
+}
+
+footer a[href^="tel:"] {
+  position: relative;
+  z-index: 10;
+  display: inline-flex; /* Helps with click area alignment */
+  align-items: center;
+}
+
+@media (hover: hover) {
+  footer nav ul li a:hover {
+    color: white;
+  }
+}
+/* ------------------------------------------------------------------------------------------------------------------ */
+
+#overlay {
+  display: none;
+  background: rgba(0, 0, 0, 0.4);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+#overlay.show {
+  display: block;
+  pointer-events: auto;
+}
+/* ------------------------------------------------------------------------------------------------------------------ */

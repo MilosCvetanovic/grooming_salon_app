@@ -12,11 +12,17 @@ UserModel = get_user_model()
 class AppUserCreationForm(UserCreationForm):
     first_name = forms.CharField(
         max_length=MAX_LENGTH,
-        widget=forms.TextInput(attrs={'autofocus': True}),
+        widget=forms.TextInput(attrs={
+            'autofocus': True,
+            'placeholder': 'Ime',
+        }),
         validators=[validate_capitalized_name]
     )
     last_name = forms.CharField(
         max_length=MAX_LENGTH,
+        widget=forms.TextInput(attrs={
+            'placeholder': 'Prezime',
+        }),
         validators=[validate_capitalized_name]
     )
 

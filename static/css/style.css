@@ -1,0 +1,86 @@
+@import 'base.css';
+@import 'home.css';
+@import 'forms.css';
+@import 'profile.css';
+
+
+/* -------------------PROVERI CEMU SLUZI OVO----------------------------------------------------------------------------------------------- */
+.btn {
+  background: var(--orange);
+  color: white;
+  padding: 0.7rem 1.5rem;
+  border-radius: 7px;
+  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
+}
+
+/* ------------------------------------------------------------------------------------------------------------------ */
+/* BREADCRUMBS */
+
+.container-fixed {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    width: 100%;
+    box-sizing: border-box;
+}
+.breadcrumb-nav {
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+.breadcrumb-container {
+    max-width: 1200px;
+    margin: -20px auto 15px auto;
+    padding: 0 10px;
+}
+
+.breadcrumb {
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.breadcrumb-item {
+    display: flex;
+    align-items: center;
+    color: #888;
+}
+
+.breadcrumb-item + .breadcrumb-item::before {
+    content: "❯";
+    padding: 0 10px;
+    color: #bbb;
+    font-weight: 300;
+}
+
+.breadcrumb-item a {
+    text-decoration: none;
+    color: #666;
+    transition: 0.2s;
+}
+
+.breadcrumb-item a:hover {
+    color: #f3811f;
+    text-decoration: underline;
+}
+
+.breadcrumb-item.active {
+    color: #a0a0a0;
+    pointer-events: none;
+}
+
+@media (max-width: 768px) {
+    .breadcrumb-container {
+        text-align: center;
+        justify-content: center;
+        display: flex;
+    }
+    .breadcrumb {
+        font-size: 12px;
+    }
+}
+

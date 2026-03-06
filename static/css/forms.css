@@ -1,0 +1,419 @@
+/* ============================= */
+/* GENERALNI DIZAJN ZA SVE FORME */
+/* ============================= */
+/* ------------------------------------------------------------------------------------------------------------------ */
+.main-container {
+    background-color: #fde9d2;
+    min-height: 70vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 20px 20px 60px 20px;
+}
+
+.main-container .container-fixed {
+  width: 100%;
+  max-width: 1200px;
+  margin-bottom: 2rem;
+}
+
+.main-box {
+    background: #fff;
+    padding: 2.5rem 2rem;
+    width: 350px;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgb(0 0 0 / 0.1);
+    text-align: center;
+    position: relative;
+}
+
+.main-box h2 {
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: #000;
+}
+
+.guideline {
+  font-size: 0.75rem;
+  margin-bottom: 1.5rem;
+  color: #555;
+}
+
+.form-group {
+  margin-bottom: 1.4rem;
+  text-align: left;
+}
+
+/* ZA FORME SA LABELOM */
+.form-group label {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 500;
+  margin-bottom: 0.4rem;
+  color: #333;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 0.55rem 1rem;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 0.9rem;
+  outline-offset: 2px;
+  outline-color: #f3811f;
+  box-sizing: border-box;
+}
+
+.form-group input::placeholder {
+  color: #aaa;
+}
+
+.form-error {
+  color: #cc0000;
+  font-size: 0.8rem;
+  margin-top: 0.25rem;
+}
+
+.btn-submit {
+    width: 100%;
+    background-color: #f3811f;
+    color: white;
+    font-weight: 600;
+    font-size: 1rem;
+    padding: 0.6rem 0;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 6px;
+}
+
+.btn-submit:hover {
+  background-color: #d26900;
+}
+
+.redirection-link {
+  font-size: 0.75rem;
+  margin-top: 0.8rem;
+  color: #555;
+}
+
+.redirection-link a {
+  color: #f3811f;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.redirection-link a:hover {
+  text-decoration: underline;
+}
+/* ------------------------------------------------------------------------------------------------------------------ */
+
+.thumbnail-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 8px;
+    padding: 10px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    position: relative;
+}
+
+.profile-thumbnail {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 2px solid #f3811f;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    box-sizing: border-box;
+    transition: all 0.3s ease;
+}
+
+.file-name {
+    font-size: 0.8rem;
+    color: #666;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 200px;
+}
+
+.form-group input[type="password"],
+.form-group input[type="text"],
+.form-group input[type="email"] {
+    width: 100%;
+    padding: 0.55rem 1rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    outline-offset: 2px;
+    outline-color: #f3811f;
+    box-sizing: border-box;
+}
+
+.helptext {
+    display: block;
+    font-size: 0.7rem;
+    color: #888;
+    margin-top: 0.3rem;
+    line-height: 1.2;
+}
+/* ------------------------------------------------------------------------------------------------------------------ */
+
+.star-rating {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+    gap: 5px;
+    margin-top: 5px;
+}
+
+.star-rating input {
+    display: none;
+}
+
+.star-rating label {
+    font-size: 1.5rem !important;
+    color: #ddd;
+    cursor: pointer;
+    transition: color 0.2s ease;
+    margin-bottom: 0 !important;
+}
+
+.star-rating label:hover,
+.star-rating label:hover ~ label,
+.star-rating input:checked ~ label {
+    color: #f3811f;
+}
+
+.form-group textarea {
+    width: 100%;
+    padding: 0.55rem 1rem;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    font-family: inherit;
+    outline-color: #f3811f;
+    box-sizing: border-box;
+    resize: vertical;
+}
+
+.form-group input[type="file"] {
+    padding: 0.4rem 0;
+    border: none;
+}
+
+.form-group a {
+    color: #f3811f;
+    font-size: 0.8rem;
+    text-decoration: none;
+}
+
+.form-group input[type="checkbox"] {
+    width: auto;
+    margin-right: 5px;
+}
+/* ------------------------------------------------------------------------------------------------------------------ */
+
+.delete-summary {
+    background-color: #fffbf7;
+    padding: 1.5rem;
+    border-radius: 8px;
+    border: 1px dashed #ddd;
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.delete-summary img {
+    display: block;
+    margin: 10px auto auto auto;
+}
+
+.summary-label {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 0.5rem;
+}
+
+.star-display {
+    margin-bottom: 0.8rem;
+}
+
+.star-display .fa-star {
+    color: #ddd;
+    font-size: 1.2rem;
+}
+
+.star-display .active-star {
+    color: #f3811f;
+}
+
+.summary-text {
+    font-size: 0.85rem;
+    font-style: italic;
+    color: #666;
+    line-height: 1.4;
+}
+
+.btn-danger {
+    background-color: #dc3545 !important;
+}
+
+.btn-danger:hover {
+    background-color: #a71d2a !important;
+}
+
+.btn-cancel {
+    display: block;
+    margin-top: 1.2rem;
+    font-size: 0.85rem;
+    color: #777;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s;
+}
+
+.btn-cancel:hover {
+    color: #333;
+    text-decoration: underline;
+}
+
+/* ------------------------------------------------------------------------------------------------------------------ */
+
+/* ============================= */
+/* LOGIKA BRISANJA/PRIKAZIVANJA SLIKE U FORMI */
+/* ============================= */
+
+/* 1. Sakrij checkbox */
+input[name="remove_picture"] {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.image-container {
+    position: relative;
+    display: inline-block;
+}
+
+.delete-trigger-clean {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+
+    width: 22px;
+    height: 22px;
+    background: white;
+    border-radius: 50%;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    cursor: pointer;
+    user-select: none;
+
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* 2. Pozicioniraj (X) u gornji desni ugao */
+.delete-trigger-clean::before {
+    content: "×";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -52%);
+    font-size: 16px;
+    font-weight: bold;
+    color: #333;
+    transition: color 0.2s ease;
+}
+
+.delete-trigger-clean:hover {
+    transform: scale(1.1);
+    box-shadow: 0 2px 6px rgba(0,0,0,0.25);
+}
+
+.delete-trigger-clean:hover::before {
+    color: #f3811f;
+}
+
+/* 3. Swap teksta slike */
+.generic-photo-placeholder {
+    display: none;
+}
+
+/* Prikazi ili obrisi sliku */
+input[name="remove_picture"]:checked ~ .image-container .current-photo,
+input[name="remove_picture"]:checked ~ .image-container .delete-trigger-clean {
+    display: none !important;
+}
+
+input[name="remove_picture"]:checked ~ .image-container .generic-photo-placeholder {
+    display: block !important;
+    opacity: 0.8;
+}
+
+/* "Trenutna slika" ostaje vidljivo */
+.file-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.label-text {
+    font-size: 0.8rem;
+    color: #333;
+}
+
+.file-name-val {
+    font-size: 0.75rem;
+    color: #666;
+    display: block;
+    max-width: 200px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.file-upload-wrapper {
+    width: 100%;
+}
+
+ /* Sakrij default-no input file dugme */
+#photo-input {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+}
+
+/* Stilizuj labelu da bude kao dugme */
+.custom-file-upload {
+    padding: 8px 16px;
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    cursor: pointer;
+    box-sizing: border-box;
+}
+
+.custom-file-upload:hover {
+    background-color: #e0e0e0;
+}
+
+.form-group label.custom-file-upload {
+    text-align: center !important;
+    display: block !important;
+    width: 100%;
+}
+/* ------------------------------------------------------------------------------------------------------------------ */

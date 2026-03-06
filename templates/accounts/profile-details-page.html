@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Moj profil | Mila salon{% endblock %}
+
+{% block content %}
+
+    <section class="main-section-wrapper">
+
+        <div class="profile-container">
+
+            <div class="container-fixed">
+                <nav aria-label="breadcrumb" class="breadcrumb-nav">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="{% url 'home' %}">Početna</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Moj profil</li>
+                    </ol>
+                </nav>
+            </div>
+
+            <h1>Moj profil</h1>
+
+            <div class="user-info">
+                <div class="profile-img">
+                    {% if user.profile.picture %}
+                        <img src="{{ user.profile.picture.url }}" alt="Fotografija profila">
+                    {% else %}
+                        <img src="{% static 'images/profilephotogeneric.png' %}" alt="Fotografija profila">
+                    {% endif %}
+                </div>
+
+                <div class="details">
+                    <h2>{{ user.profile.get_profile_name }}</h2>
+
+                    <div class="info-row">
+                        <img src="{% static 'images/mail.svg' %}" alt="Email" class="inline-icon">
+                        <p>{{ user.email }}</p>
+                    </div>
+
+                    <div class="info-row">
+                        <img src="{% static 'images/phone.svg' %}" alt="Telefon" class="inline-icon">
+                        {% if user.profile.phone %}<p>{{ user.profile.phone }}</p>{% else %}<p>/</p>{% endif %}
+                    </div>
+
+                    <div class="info-row">
+                        <img src="{% static 'images/dogicon.svg' %}" alt="Broj pasa" class="inline-icon">
+                        <p>{{ dogs.count }} {% if dogs.count == 1 %}pas{% else %}psa{% endif %}</p>
+                    </div>
+                </div>
+
+                <div class="right-side">
+                    <a href="{% url 'profile_edit' %}" class="edit-btn"><i class="fa-solid fa-pen"></i></a>
+
+                    <div class="buttons">
+                        <a href="{% url 'my_appointments' %}" class="my-appointments-btn">Moji termini <i class="fa-regular fa-clock"></i></a>
+                        <a href="{% url 'add_dog' %}" class="add-dog-btn">Dodaj psa <i class="fa-sharp fa-solid fa-plus"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <h2>Moji psi</h2>
+
+            <div class="dogs-list">
+                {% if dogs %}
+
+                    {% for dog in dogs %}
+                        <a href="{% url 'dog_details' dog.slug %}">
+                            <div class="dog-card">
+                                {% if dog.picture %}
+                                    <img src="{{ dog.picture.url }}" alt="Fotografija psa">
+                                {% else %}
+                                    <img src="{% static 'images/nodog.png' %}" alt="Fotografija psa">
+                                {% endif %}
+                                <p>{{ dog.name }}</p>
+                            </div>
+                        </a>
+                    {% endfor %}
+
+                {% else %}
+
+                    <div class="dog-card">
+                        <img src="{% static 'images/nodog.png' %}" alt="Nema dodatih pasa">
+                        <p>Nema dodatih pasa</p>
+                    </div>
+
+                {% endif %}
+            </div>
+        </div>
+    </section>
+
+{% endblock %}

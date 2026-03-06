@@ -1,0 +1,12 @@
+{% load static %}
+
+    <script src="{% static 'js/image.js' %}"></script>
+    <script>
+        // Pozivamo funkciju sa specifičnim ID-evima i klasama
+        setupImagePreview(
+            'photo-input',           // ID iz forms.py
+            '.current-photo',        // Klasa trenutne slike
+            '.file-name-val',        // Klasa gde piše ime fajla
+            'remove_picture'         // Name atribut checkbox-a
+        );
+    </script>

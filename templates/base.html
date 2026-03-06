@@ -1,0 +1,215 @@
+{% load static %}
+
+<!doctype html>
+<html lang="sr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>{% block title %}Mila salon za šišanje pasa{% endblock %}</title>
+    <meta name="description" content="Saloni za kućne ljubimce, šišanje pasa Beograd">
+    <!-- Stilovi -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/custom_css/forms.css' %}">
+    <link rel="stylesheet" href="{% static 'css/custom_css/services.css' %}">
+    <link rel="stylesheet" href="{% static 'css/custom_css/appointments.css' %}">
+    <link rel="stylesheet" href="{% static 'css/custom_css/groomers.css' %}">
+    <link rel="stylesheet" href="{% static 'css/custom_css/profile.css' %}">
+    <link rel="stylesheet" href="{% static 'css/custom_css/dog_details.css' %}">
+    <link rel="stylesheet" href="{% static 'css/custom_css/confirmation.css' %}">
+    <link rel="stylesheet" href="{% static 'css/custom_css/selection.css' %}">
+    <link rel="stylesheet" href="{% static 'css/custom_css/my-appointments.css' %}">
+    <link rel="stylesheet" href="{% static 'css/custom_css/all_reviews.css' %}">
+    <link rel="stylesheet" href="{% static 'css/custom_css/error.css' %}">
+    <link rel="stylesheet" href="{% static 'css/custom_css/notifications.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700;900&display=swap">
+    <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
+    <link rel="stylesheet" href="{% static 'js/glide/source/css/glide.core.min.css' %}" type="text/css"/>
+    <!-- Fontovi -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Ikonice u browser tabu -->
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+    <link rel="mask-icon" href="safari-pinned-tab.svg" color="#5bbad5">
+    <!-- Meta podaci koji definišu boju tile-a u Windowsu i boju trake browsera na mobilnim uređajima respektivno -->
+{#    <meta name="msapplication-TileColor" content="#da532c">#}
+{#    <meta name="theme-color" content="#ffffff">#}
+    <!-- Meta podaci koji kontrolišu kako sajt izgleda kada se podeli na društvenim mrežama -->
+{#    <meta property="og:title" content="Mila salon za šišanje pasa"/>#}
+{#    <meta property="og:description" content="Saloni za kućne ljubimce, šišanje pasa Beograd."/>#}
+{#    <meta property="og:image" content="https://salonzapse.rs/images/logoOG.jpg"/>#}
+{#    <meta property="og:url" content="https://salonzapse.rs" />#}
+{#    <meta property="og:type" content="website" />#}
+</head>
+
+<body>
+    <header class="containerLarge">
+
+        <div id="hamburger">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                <path d="M0 96C0 78.3 14.3 64 32 64H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32C14.3 128 0 113.7 0 96zM0 256c0-17.7 14.3-32 32-32H416c17.7 0 32 14.3 32 32s-14.3 32-32 32H32c-17.7 0-32-14.3-32-32zM448 416c0 17.7-14.3 32-32 32H32c-17.7 0-32-14.3-32-32s14.3-32 32-32H416c17.7 0 32 14.3 32 32z"></path>
+            </svg>
+        </div>
+
+        <div id="logo">
+            <a href="{% url 'home' %}" title="Početna">
+                <img src="{% static 'images/logo.svg' %}" alt="Logo">
+            </a>
+        </div>
+
+        {% if not is_404 and not is_405 and not is_500 %}
+            <nav id="headerNav">
+                <div id="close">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
+                        <path d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"></path>
+                    </svg>
+                </div>
+
+                <ul>
+                    {% if request.path == '/' %}
+                        <li><a title="Galerija" href="#gallery">Galerija</a></li>
+                        <li><a title="Naše usluge" href="#services">Naše usluge</a></li>
+                        <li><a title="Zašto baš mi?" href="#whyUs">Zašto baš mi?</a></li>
+                    {% else %}
+                        <li><a title="Galerija" href="/#gallery">Galerija</a></li>
+                        <li><a title="Naše usluge" href="/#services">Naše usluge</a></li>
+                        <li><a title="Zašto baš mi?" href="/#whyUs">Zašto baš mi?</a></li>
+                    {% endif %}
+                    <li><a title="Kontakt" href="#footerNav">Kontakt</a></li>
+                </ul>
+            </nav>
+
+            <div id="buttons">
+                {% if request.user.is_authenticated %}
+
+                    <div id="notification-wrapper">
+                        <button class="notification-bell" id="notification-bell">
+                            <i class="fa-regular fa-bell"></i> <span class="badge" id="unread-badge"></span>
+                        </button>
+                        <div class="notification-dropdown" id="notification-dropdown">
+                            <div class="notification-header">
+                                <strong>Obaveštenja</strong>
+                                <button id="mark-all-btn">Označi sva kao pročitana</button>
+                            </div>
+                            <div id="notification-list"></div>
+                        </div>
+                    </div>
+
+                    <div class="avatar-container {% if request.resolver_match.url_name == 'profile_details' %}has-dropdown{% endif %}">
+
+                        <a id="avatar-link" href="{% url 'profile_details' %}">
+                            {% if user.profile.picture %}
+                                <img src="{{ user.profile.picture.url }}" class="profile-thumbnail">
+                            {% else %}
+                                <div class="avatar-letter profile-thumbnail">{{ user.profile.first_name|slice:":1"|upper }}</div>
+                            {% endif %}
+                        </a>
+
+                        <div class="avatar-dropdown">
+                            <div class="avatar-dropdown-content">
+                                <form method="post" action="{% url 'logout' %}">
+                                    {% csrf_token %}
+                                    <button class="logout-btn" type="submit"><i class="fas fa-sign-out-alt"></i>Odjavite se</button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                {% else %}
+                    <a id="login-btn" href="{% url 'login' %}" title="Prijava">Prijavite se</a>
+                {% endif %}
+
+            </div>
+        {% endif %}
+    </header>
+
+    {% block content %}
+    {% endblock %}
+
+    <footer class="containerLarge">
+        <nav id="footerNav">
+            <ul>
+                <li><h3>Mila salon za negu i šišanje pasa</h3></li>
+                {% if request.path == '/' %}
+                    <li><a title="Galerija" href="#gallery">Galerija</a></li>
+                    <li><a title="Naše usluge" href="#services">Naše usluge</a></li>
+                    <li><a title="Zašto baš mi?" href="#whyUs">Zašto baš mi?</a></li>
+                {% else %}
+                    <li><a title="Galerija" href="/#gallery">Galerija</a></li>
+                    <li><a title="Naše usluge" href="/#services">Naše usluge</a></li>
+                    <li><a title="Zašto baš mi?" href="/#whyUs">Zašto baš mi?</a></li>
+                {% endif %}
+            </ul>
+
+            <ul>
+                <li><h3>Kako do nas?</h3></li>
+                <li>
+                    <a target="_blank" class="location" href="https://maps.app.goo.gl/FVdm4PFm4ZdtLVkH8" title="Lokacija">
+                        <img src="{% static 'images/map-pin.svg' %}" alt="Lokacija">
+                        <span>Luneta Milovanovića 13v,<br>Zvezdara, Beograd</span>
+                    </a>
+                </li>
+                <li>
+                    <img src="{% static 'images/clock.svg' %}" alt="Radno Vreme">
+                    <span><span class="working-time">Radno vreme:</span><br>Ponedeljak - Subota<br>09.00 - 17.00 h</span>
+                </li>
+            </ul>
+
+            <ul>
+                <li><h3>Kontaktirajte nas</h3></li>
+                <li>
+                    <a title="Email" href="mailto:milasisanjepasa@gmail.com">
+                        <img src="{% static 'images/mail.svg' %}" alt="Email">
+                        <span class="underline">milasisanjepasa@gmail.com</span>
+                    </a>
+                </li>
+                <li>
+                    <a title="Telefon" href="tel:+381691658004">
+                        <img src="{% static 'images/phone.svg' %}" alt="Telefon">
+                        <span class="underline">+381 69 165 80 04</span>
+                    </a>
+                </li>
+            </ul>
+
+            <ul>
+                <li><h3>Društvene mreže</h3></li>
+                <li>
+                    <a href="https://www.instagram.com/milasisanjepasa/" title="Instagram" target="_blank">
+                        <img src="{% static 'images/instagram.svg' %}" alt="Instagram">
+                        <span>milasisanjepasa</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="https://www.facebook.com/profile.php?id=61553707539939" title="Facebook" target="_blank">
+                        <img src="{% static 'images/facebook.svg' %}" alt="Facebook">
+                        <span>Milasisanjepasa</span>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+    </footer>
+
+    <div id="overlay"></div>
+    <!----------------------------------------------------------------------------------------------------------------->
+    <script src="https://unpkg.com/aos@next/dist/aos.js"></script> <!-- Biblioteka za animacije pri skrolanju -->
+    <script src="{% static 'js/fslightbox.js' %}"></script> <!-- Biblioteka za slike u punom ekranu -->
+    <script src="{% static 'js/glide/source/glide.min.js' %}"></script> <!-- Biblioteka Glide Carousel -->
+    <script src="{% static 'js/notifications.js' %}"></script>
+    <script src="{% static 'js/index.js' %}"></script>
+
+    <!-- Google tag (gtag.js) prati ponašanje posetilaca sajta i šalje podatke u Google Analytics nalog -->
+    <!--
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-K6KW2R4D3H"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-K6KW2R4D3H');
+    </script>
+    -->
+</body>
+</html>

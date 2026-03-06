@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+{% load custom_filters %}
+{% load static %}
+
+{% block title %}Registracija | Mila salon{% endblock %}
+
+{% block content %}
+
+    <div class="main-container">
+
+        <div class="container-fixed">
+            <nav aria-label="breadcrumb" class="breadcrumb-nav">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{% url 'home' %}">Početna</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Registrujte se</li>
+                </ol>
+            </nav>
+        </div>
+
+        <div class="main-box">
+
+            <h2>Registrujte se</h2>
+            <p class="guideline">Molimo vas, registrujte se unosom svojih podataka</p>
+
+            <form method="post" action="{% url 'register' %}" novalidate>
+
+                {% csrf_token %}
+
+                <!-- Ime -->
+                <div class="form-group">
+                    {{ form.first_name }}
+                    {% if form.first_name.errors %}
+                        <div class="form-error">{{ form.first_name.errors }}</div>
+                    {% endif %}
+                </div>
+
+                <!-- Prezime -->
+                <div class="form-group">
+                    {{ form.last_name }}
+                    {% if form.last_name.errors %}
+                        <div class="form-error">{{ form.last_name.errors }}</div>
+                    {% endif %}
+                </div>
+
+                <!-- E-mail -->
+                <div class="form-group">
+                    {{ form.email|placeholder:'E-mail adresa' }}
+                    {% if form.email.errors %}
+                        <div class="form-error">{{ form.email.errors }}</div>
+                    {% endif %}
+                </div>
+
+                <!-- Lozinka 1 -->
+                <div class="form-group">
+                    {{ form.password1|placeholder:'Lozinka' }}
+                    {% if form.password1.errors %}
+                        <div class="form-error">{{ form.password1.errors }}</div>
+                    {% endif %}
+                </div>
+
+                <!-- Lozinka 2 -->
+                <div class="form-group">
+                    {{ form.password2|placeholder:'Ponovite lozinku' }}
+                    {% if form.password2.errors %}
+                        <div class="form-error">{{ form.password2.errors }}</div>
+                    {% endif %}
+                </div>
+
+                <button type="submit" class="btn-submit">Registracija</button>
+
+            </form>
+
+            <p class="redirection-link">Imate nalog? <a href="{% url 'login' %}">Prijavite se</a></p>
+
+        </div>
+    </div>
+
+{% endblock %}

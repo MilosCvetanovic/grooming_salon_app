@@ -33,7 +33,8 @@ ALLOWED_HOSTS = ["*"]
 # Application definition
 
 MY_APPS = [
-    'grooming_salon.accounts'
+    'grooming_salon.accounts',
+    'grooming_salon.common',
 ]
 
 INSTALLED_APPS = [
@@ -45,6 +46,15 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 ] + MY_APPS
 
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.SessionAuthentication',
+    ],
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticated',
+    ]
+}
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -53,6 +63,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'grooming_salon.urls'
@@ -125,7 +137,6 @@ LANGUAGES = [
 TIME_ZONE = 'Europe/Belgrade'
 
 USE_I18N = True
-
 USE_TZ = True
 
 # Default primary key field type
@@ -136,7 +147,10 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/6.0/howto/static-files/
 
+# Neophodno za rad sa static fajlovima
 STATIC_URL = 'static/'
+STATICFILES_DIRS = [BASE_DIR / 'static']
+STATIC_ROOT = BASE_DIR / "staticfiles"
 
 # Neophodno za rad sa medijskim datotekama
 MEDIA_URL = '/media/'

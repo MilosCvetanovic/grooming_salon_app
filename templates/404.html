@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}404 | Stranica nije pronađena{% endblock %}
+
+{% block content %}
+
+    <main class="error-wrapper">
+        <div class="error-split-container">
+
+            <div class="error-content-left">
+                <h1 class="error-code">404</h1>
+                <h2 class="error-title">Stranica nije pronađena</h2>
+
+                <p class="error-text">
+                    Ups! Izgleda da smo malo zalutali.
+                    Stranica koju tražite više ne postoji ili je premeštena.
+                    Možda je neki pas pojeo URL!
+                </p>
+
+                <a href="{% url 'home' %}" class="btn-primary-groom">
+                    Nazad na početnu stranu
+                </a>
+            </div>
+
+            <div class="error-illustration-right">
+                 <img src="{% static 'images/404-dog.png' %}" alt="Odlutali pas" class="error-illustration">
+            </div>
+
+        </div>
+    </main>
+
+{% endblock %}

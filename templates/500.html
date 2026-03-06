@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}500 | Greška servera{% endblock %}
+
+{% block content %}
+
+    <main class="error-wrapper">
+        <div class="error-split-container">
+
+            <div class="error-content-left">
+                <h1 class="error-code">500</h1>
+                <h2 class="error-title">Greška servera</h2>
+
+                <p class="error-text">
+                    Nažalost, došlo je do tehničkog problema na našem serveru.<br>
+                    Naši pro-grumeri već rade na "četkanju" problema kako bi sve ponovo bilo glatko i sjajno!
+                    Molimo vas, pokušajte ponovo kasnije.
+                </p>
+
+                <a href="{% url 'home' %}" class="btn-primary-groom">
+                    Nazad na početnu stranu
+                </a>
+            </div>
+
+            <div class="error-illustration-right">
+                 <img src="{% static 'images/500-dog.png' %}" alt="Odlutali pas" class="error-illustration dog-size">
+            </div>
+
+        </div>
+    </main>
+
+{% endblock %}

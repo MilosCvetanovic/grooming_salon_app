@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}405 | Metod nije dozvoljen{% endblock %}
+
+{% block content %}
+
+    <main class="error-wrapper">
+        <div class="error-split-container">
+
+            <div class="error-content-left">
+                <h1 class="error-code">405</h1>
+                <h2 class="error-title">Metod nije dozvoljen</h2>
+
+                <p class="error-text">
+                    Sadržaj postoji, ali je pristup blokiran!
+                </p>
+
+                <a href="{% url 'home' %}" class="btn-primary-groom">
+                    Nazad na početnu stranu
+                </a>
+            </div>
+
+            <div class="error-illustration-right">
+                 <img src="{% static 'images/405-dog.png' %}" alt="Odlutali pas" class="error-illustration dog-405-size">
+            </div>
+
+        </div>
+    </main>
+
+{% endblock %}

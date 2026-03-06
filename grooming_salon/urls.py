@@ -21,9 +21,14 @@ from django.views.static import serve
 from grooming_salon import settings
 
 #-----------------------------------------------------------------------------------------------------------------------
+handler404 = 'grooming_salon.common.views.error_404'
+handler500 = 'grooming_salon.common.views.error_500'
+
+#-----------------------------------------------------------------------------------------------------------------------
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('accounts/', include('grooming_salon.accounts.urls'))
+    path('', include('grooming_salon.common.urls')),
+    path('accounts/', include('grooming_salon.accounts.urls')),
 ]
 
 #-----------------------------------------------------------------------------------------------------------------------

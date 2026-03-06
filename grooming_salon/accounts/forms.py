@@ -1,9 +1,9 @@
-from django.contrib.auth import get_user_model
-from django.contrib.auth.forms import UserCreationForm, AuthenticationForm, UserChangeForm
 from django import forms
-
-from grooming_salon.utils.mixins import RemovePictureMixin
+from django.contrib.auth import get_user_model
+from grooming_salon.accounts.models import Profile
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm, UserChangeForm
 from grooming_salon.utils.validators import validate_capitalized_name
+from grooming_salon.utils.mixins import RemovePictureMixin
 
 MAX_LENGTH = 30
 UserModel = get_user_model()
@@ -62,4 +62,31 @@ class AppUserChangeForm(UserChangeForm):
 
 #-----------------------------------------------------------------------------------------------------------------------
 class ProfileEditForm(RemovePictureMixin, forms.ModelForm):
-    pass
+    class Meta:
+        model = Profile
+        fields = ['first_name', 'last_name', 'phone', 'picture']
+        widgets = {
+            'first_name': forms.TextInput(attrs={'autofocus': True}),
+            'last_name': forms.TextInput(),
+            'phone': forms.TextInput(),
+            'picture': forms.FileInput(attrs={'id': 'photo-input'}),
+        }
+        labels = {
+            'first_name': 'Ime:',
+            'last_name': 'Prezime:',
+            'phone': 'Telefon:',
+            'picture': 'Profilna fotografija:'
+        }
+
+    # Čistimo polje "picture" ako je korisnik aktivirao (X)
+    def clean(self):
+        cleaned_data = super().clean()
+        remove_picture = cleaned_data.get('remove_picture')
+
+        if remove_picture:
+            cleaned_data['picture'] = None
+            cleaned_data['remove_picture'] = True
+
+        return cleaned_data
+
+#-----------------------------------------------------------------------------------------------------------------------

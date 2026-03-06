@@ -16,18 +16,18 @@ function setupImagePreview(inputId, previewSelector, fileNameSelector, checkboxN
         const removeCheckbox = document.querySelector(`input[name="${checkboxName}"]`);
 
         if (file) {
-            // 1. Ažuriraj ime fajla
+            // 1. Ažuriranje imena fajla
             if (fileNameDisp) {
                 fileNameDisp.textContent = file.name;
             }
 
-            // 2. Generiši preview
+            // 2. Preview
             const reader = new FileReader();
             reader.onload = function(e) {
                 if (previewImg) {
                     previewImg.src = e.target.result;
 
-                    // --- DODATO: Otkrivanje X dugmeta ---
+                    // --- Otkrivanje X dugmeta ---
                     // Tražimo labelu (X) koja se nalazi u istom thumbnail-wrapperu kao i slika
                     const wrapper = previewImg.closest('.thumbnail-wrapper');
                     if (wrapper) {
@@ -41,7 +41,7 @@ function setupImagePreview(inputId, previewSelector, fileNameSelector, checkboxN
             }
             reader.readAsDataURL(file);
 
-            // 3. Resetuj "Remove" checkbox ako postoji
+            // 3. Resetujemo "Remove" checkbox ako postoji
             if (removeCheckbox) {
                 removeCheckbox.checked = false;
                 // Pokrećemo event da bi CSS (checkbox hack) odreagovao i prikazao sliku
@@ -50,16 +50,14 @@ function setupImagePreview(inputId, previewSelector, fileNameSelector, checkboxN
         }
     });
 
-    // Dodaj ovo unutar setupImagePreview ili kao poseban deo koda
     document.addEventListener('click', function(e) {
         if (e.target.classList.contains('delete-trigger-clean')) {
-            // Pronađi file input (možeš ga tražiti preko ID-a koji koristiš)
             const photoInput = document.getElementById('photo-input');
             if (photoInput) {
-                photoInput.value = ""; // Ovo je ključna linija!
+                photoInput.value = "";
             }
 
-            // Opciono: Ako želiš da vratiš text na "Nema slike" odmah
+            // Vraćanje teksta na "Nema fotografije" odmah
             const fileNameDisp = document.querySelector('.file-name-val');
             if (fileNameDisp) {
                 fileNameDisp.textContent = "Nema fotografije";

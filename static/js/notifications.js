@@ -6,6 +6,7 @@ function getCookie(name) {
 
 const csrfToken = getCookie('csrftoken');
 
+/*--------------------------------------------------------------------------------------------------------------------*/
 // ─── Fetch i render notifikacija ───────────────────────────────────────────
 
 function fetchNotifications() {
@@ -54,6 +55,7 @@ function renderNotificationList(notifications) {
     `).join('');
 }
 
+/*--------------------------------------------------------------------------------------------------------------------*/
 // ─── Toggle dropdown ───────────────────────────────────────────────────────
 
 function toggleNotifications() {
@@ -79,6 +81,7 @@ document.addEventListener('click', function (e) {
     }
 });
 
+/*--------------------------------------------------------------------------------------------------------------------*/
 // ─── API akcije ────────────────────────────────────────────────────────────
 
 function markRead(id) {
@@ -114,6 +117,7 @@ function deleteNotification(id) {
         .catch(err => console.error('Greška pri brisanju:', err));
 }
 
+/*--------------------------------------------------------------------------------------------------------------------*/
 // ─── Inicijalizacija ───────────────────────────────────────────────────────
 
 document.addEventListener('DOMContentLoaded', function () {

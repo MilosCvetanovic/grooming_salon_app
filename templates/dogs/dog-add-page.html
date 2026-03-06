@@ -1,0 +1,103 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Dodajte psa | Mila salon{% endblock %}
+
+{% block content %}
+
+    <div class="main-container">
+
+        <div class="main-box">
+
+            <h2>Dodajte psa</h2>
+            <a href="{% url 'profile_details' %}" class="ds-close-x">&times;</a>
+            <p class="guideline">Unesite podatke o vašem psu</p>
+
+            <form method="post" action="{% url 'add_dog' %}" enctype="multipart/form-data">
+
+                {% csrf_token %}
+
+                <!-- Ime psa -->
+                <div class="form-group">
+                    {{ form.name.label_tag }}
+                    {{ form.name }}
+                    {% if form.name.errors %}
+                        <div class="form-error">{{ form.name.errors }}</div>
+                    {% endif %}
+                </div>
+
+                <!-- Datum rođenja psa -->
+                <div class="form-group">
+                    {{ form.date_of_birth.label_tag }}
+                    {{ form.date_of_birth }}
+                    {% if form.date_of_birth.errors %}
+                        <div class="form-error">{{ form.date_of_birth.errors }}</div>
+                    {% endif %}
+                </div>
+
+                <!-- Rasa -->
+                <div class="form-group">
+                    {{ form.breed.label_tag }}
+                    {{ form.breed }}
+                    {% if form.breed.errors %}
+                        <div class="form-error">{{ form.breed.errors }}</div>
+                    {% endif %}
+                </div>
+
+                <!-- Fotografija psa -->
+                <div class="form-group">
+
+                    {{ form.picture.label_tag }}
+
+                    <div class="current-image-container">
+                        <div class="thumbnail-wrapper">
+
+                            {{ form.remove_picture }}
+
+                            <div class="image-container">
+                                <label for="{{ form.remove_picture.id_for_label }}"
+                                       class="delete-trigger-clean"
+                                       {% if not dog.picture %} style="display: none;" {% endif %}>
+                                </label>
+
+                                <img src="{% if dog.picture %}{{ dog.picture.url }}{% else %}{% static 'images/nodog.png' %}{% endif %}"
+                                     alt="Fotografija psa"
+                                     class="profile-thumbnail current-photo">
+
+                                <img src="{% static 'images/nodog.png' %}" alt="Fotografija psa"
+                                     class="profile-thumbnail generic-photo-placeholder">
+                            </div>
+
+                            <div class="file-info">
+                                <span class="label-text"><strong>Trenutna fotografija:</strong></span>
+                                <span class="file-name-val">
+                                    {% if dog.picture %}{{ dog.filename }}{% else %}Nema fotografije{% endif %}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="file-upload-wrapper">
+                        {{ form.picture }}
+
+                        <label for="photo-input" class="custom-file-upload">
+                            <i class="fa fa-upload"></i> Izaberite fotografiju
+                        </label>
+
+                        {% if form.picture.errors %}
+                            <div class="form-error">{{ form.picture.errors }}</div>
+                        {% endif %}
+
+                    </div>
+                </div>
+
+                <button type="submit" class="btn-submit">Dodaj</button>
+            </form>
+        </div>
+    </div>
+
+    {% block extra_js %}
+        {% include 'includes/image_preview_js.html' %}
+    {% endblock %}
+
+{% endblock %}

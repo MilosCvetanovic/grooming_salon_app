@@ -8,6 +8,7 @@ from grooming_salon.utils.mixins import RemovePictureMixin
 MAX_LENGTH = 30
 UserModel = get_user_model()
 
+# Create your forms here.
 #-----------------------------------------------------------------------------------------------------------------------
 class AppUserCreationForm(UserCreationForm):
     first_name = forms.CharField(

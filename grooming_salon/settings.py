@@ -35,6 +35,7 @@ ALLOWED_HOSTS = ["*"]
 MY_APPS = [
     'grooming_salon.accounts',
     'grooming_salon.common',
+    'grooming_salon.dogs',
 ]
 
 INSTALLED_APPS = [

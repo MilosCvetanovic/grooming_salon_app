@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Obrišite psa | Mila salon{% endblock %}
+
+{% block content %}
+
+    <div class="main-container">
+
+        <div class="main-box">
+
+            <h2>Obrišite psa</h2>
+            <p class="guideline">Ukoliko nastavite, svi podaci o psu će biti obrisani</p>
+
+            <form method="post" action="{% url 'delete_dog' dog.slug %}" enctype="multipart/form-data">
+
+                {% csrf_token %}
+
+                <!-- Ime psa -->
+                <div class="form-group">
+                    {{ form.name.label_tag }}
+                    {{ form.name }}
+                    {% if form.name.errors %}
+                        <div class="form-error">{{ form.name.errors }}</div>
+                    {% endif %}
+                </div>
+
+                <!-- Datum rođenja psa -->
+                <div class="form-group">
+                    {{ form.date_of_birth.label_tag }}
+                    {{ form.date_of_birth }}
+                    {% if form.date_of_birth.errors %}
+                        <div class="form-error">{{ form.date_of_birth.errors }}</div>
+                    {% endif %}
+                </div>
+
+                <!-- Rasa -->
+                <div class="form-group">
+                    {{ form.breed.label_tag }}
+                    {{ form.breed }}
+                    {% if form.breed.errors %}
+                        <div class="form-error">{{ form.breed.errors }}</div>
+                    {% endif %}
+                </div>
+
+                <!-- Fotografija psa -->
+                <div class="form-group">
+
+                    {{ form.picture.label_tag }}
+
+                    <div class="current-image-container">
+                        <div class="thumbnail-wrapper">
+                            {% if dog.picture %}
+                                <img src="{{ dog.picture.url }}" alt="Fotografija psa" class="profile-thumbnail">
+                                <span class="file-name"><strong>Trenutna fotografija: </strong><br>{{ dog.filename }}</span>
+                            {% else %}
+                                <img src="{% static 'images/nodog.png' %}" alt="Fotografija psa" class="profile-thumbnail">
+                                <span class="file-name"><strong>Trenutna fotografija: </strong><br>Nema fotografije</span>
+                            {% endif %}
+                        </div>
+                    </div>
+
+                    {% if form.picture.errors %}
+                        <div class="form-error">{{ form.picture.errors }}</div>
+                    {% endif %}
+
+                </div>
+
+                <button type="submit" class="btn-submit btn-delete">Obriši</button>
+
+            </form>
+            <p class="redirection-link" ><a href="{% url 'dog_details' dog.slug %}">Odustani</a></p>
+        </div>
+    </div>
+
+{% endblock %}

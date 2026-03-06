@@ -29,6 +29,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('grooming_salon.common.urls')),
     path('accounts/', include('grooming_salon.accounts.urls')),
+    path('dogs/', include('grooming_salon.dogs.urls')),
 ]
 
 #-----------------------------------------------------------------------------------------------------------------------

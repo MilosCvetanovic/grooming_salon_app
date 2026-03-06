@@ -359,9 +359,8 @@
 .avatar-container.has-dropdown.open::after {
     transform: translateX(-50%) rotate(180deg);
 }
-/* ------------------------------------------------------------------------------------------------------------------ */
 
-/* Style the Logout Button inside the menu */
+/* ------------------------------------------------------------------------------------------------------------------ */
 .logout-btn {
     width: 100%;
     padding: 12px 15px;
@@ -377,8 +376,8 @@
 }
 
 .logout-btn:hover {
-    background-color: #fffaf5; /* Very light orange tint */
-    color: #ff851b; /* Your brand orange */
+    background-color: #fffaf5;
+    color: #f3811f;
 }
 
 .logout-btn i {
@@ -386,7 +385,6 @@
 }
 
 /* ------------------------------------------------------------------------------------------------------------------ */
-
 /* ============================= */
 /* BRISANJE PROFILA */
 /* ============================= */

@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Detalji psa | Mila salon{% endblock %}
+
+{% block content %}
+
+    <div class="details-container">
+
+        <div class="card">
+
+            <h2 class="dog-name">{{ dog.name }}</h2>
+            <a href="{% url 'profile_details' %}" class="ds-close-x">&times;</a>
+
+            <div class="image-wrapper">
+                {% if dog.picture %}
+                    <img src="{{ dog.picture.url }}" alt="Fotografija psa">
+                {% else %}
+                    <img src="{% static 'images/nodog.png' %}" alt="Fotografija psa">
+                {% endif %}
+            </div>
+
+            <hr class="divider">
+
+            <div class="info-section">
+                <p><strong>Rasa:</strong> {{ dog.breed }}</p>
+                <p><strong>Datum rođenja:</strong> {{ dog.date_of_birth|date:"d.m.Y." }}</p>
+            </div>
+
+            <div class="button-group">
+                <a href="{% url 'edit_dog' dog.slug %}" class="btn btn-edit">Izmenite psa</a>
+                <a href="{% url 'delete_dog' dog.slug %}" class="btn btn-delete">Obrišite psa</a>
+            </div>
+
+        </div>
+    </div>
+
+{% endblock %}

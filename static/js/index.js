@@ -84,8 +84,9 @@ document.addEventListener('DOMContentLoaded', function() {
         glide.mount();
     }
 })
-    /************************************************************/
-/* Drop down on click for avatar profile picture and logout button */
+
+/*--------------------------------------------------------------------------------------------------------------------*/
+/* Drop down meni na klik avatara profila za logout dugme */
 document.addEventListener('DOMContentLoaded', function () {
     const avatarContainer = document.querySelector('.avatar-container.has-dropdown');
 
@@ -106,3 +107,5 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 });
+
+/*--------------------------------------------------------------------------------------------------------------------*/

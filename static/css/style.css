@@ -3,19 +3,12 @@
 @import 'forms.css';
 @import 'profile.css';
 @import 'error.css';
-
-
-/* -------------------PROVERI CEMU SLUZI OVO----------------------------------------------------------------------------------------------- */
-.btn {
-  background: var(--orange);
-  color: white;
-  padding: 0.7rem 1.5rem;
-  border-radius: 7px;
-  box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.1);
-}
+@import 'dog.css';
 
 /* ------------------------------------------------------------------------------------------------------------------ */
+/* ============================= */
 /* BREADCRUMBS */
+/* ============================= */
 
 .container-fixed {
     max-width: 1200px;

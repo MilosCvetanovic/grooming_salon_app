@@ -1,0 +1,122 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Sve recenzije | Mila salon{% endblock %}
+
+{% block content %}
+
+    <div class="review-section">
+        <div class="reviews-container">
+
+            <div class="container-fixed">
+                <nav aria-label="breadcrumb" class="breadcrumb-nav">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="{% url 'home' %}">Početna</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Recenzije</li>
+                    </ol>
+                </nav>
+            </div>
+
+            <h1 class="page-title">Recenzije</h1>
+
+            <div class="summary-card">
+                <div class="summary-left">
+                    <span class="label">Prosečna ocena</span>
+                    <div class="score-big">{{ average_rating }}</div>
+                    <span class="count-sub">{{ total_reviews }}
+                        {% if total_reviews == 1 %}
+                            ocena
+                        {% elif total_reviews >= 2 and total_reviews <= 4 %}
+                            ocene
+                        {% else %}
+                            ocena
+                        {% endif %}
+                    </span>
+                </div>
+
+                <div class="summary-right">
+
+                    {% for item in rating_summary %}
+                        <div class="bar-row">
+                            <div class="stars-list">
+                                {% for i in "12345" %}
+                                    <span class="star-icon {% if forloop.counter <= item.star %}filled{% endif %}"><i class="fa fa-star"></i></span>
+                                {% endfor %}
+                            </div>
+                            <div class="progress-track">
+                                <div class="progress-fill" style="width: {{ item.percentage }}%;"></div>
+                            </div>
+                        </div>
+                    {% endfor %}
+
+                </div>
+            </div>
+
+            {% for review in reviews %}
+                <div class="review-card">
+                    <div class="card-header">
+
+                        <div class="user-block">
+                            <img src="{{ review.appointment.user.profile.picture.url }}" class="profile-thumbnail" alt="Fotografija profila">
+                            <div class="user-text">
+                                <strong class="name">{{ review.appointment.user.profile.get_profile_name }}</strong>
+                                <span class="date">{{ review.created_at|date:"d.m.Y" }}</span>
+                            </div>
+                        </div>
+
+                        <div class="rating-stars">
+                            {% for i in "12345" %}
+                                <span class="star-icon {% if forloop.counter <= review.rating %}filled{% endif %}"><i class="fa fa-star"></i></span>
+                            {% endfor %}
+                        </div>
+
+                    </div>
+
+                    <div class="card-content">
+                        {% if review.picture %}
+                            <a href="{{ review.picture.url }}" class="photo-link"><img src="{{ review.picture.url }}" class="review-photo" alt="Fotografija recenzije"></a>
+                        {% endif %}
+
+                        {% if review.description %}
+                            <p class="comment">{{ review.description }}</p>
+                        {% endif %}
+                    </div>
+
+                    {% if request.user.is_authenticated %}
+                        <div class="card-footer">
+
+                            {% if request.user == review.appointment.user %}
+                                <div class="user-controls">
+                                    <a class="delete-review" href="{% url 'delete_review' review.appointment.id %}"><i class="fa-solid fa-trash"></i></a>
+                                    <a class="edit-review" href="{% url 'edit_review' review.appointment.id %}"><i class="fa-solid fa-pen"></i></a>
+                                </div>
+                            {% endif %}
+
+                            <form method="POST" action="{% url 'toggle_like' review.id %}" class="like-form">
+
+                                {% csrf_token %}
+
+                                <button type="submit" class="heart-btn {% if review.user_has_liked %}liked{% endif %}">
+                                    {% if review.user_has_liked %}
+                                        <i class="fa-solid fa-heart"></i>
+                                    {% else %}
+                                        <i class="fa-regular fa-heart"></i>
+                                    {% endif %}
+                                </button>
+
+                                <span class="likes-count-wrapper">
+                                    {% if review.likes_count > 0 %}
+                                        <span class="likes-count">{{ review.likes_count }}</span>
+                                    {% endif %}
+                                </span>
+
+                            </form>
+                        </div>
+                    {% endif %}
+
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+{% endblock %}

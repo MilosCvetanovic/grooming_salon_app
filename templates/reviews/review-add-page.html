@@ -1,0 +1,95 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Dodajte recenziju | Mila salon{% endblock %}
+
+{% block content %}
+
+    <div class="main-container">
+
+        <div class="main-box">
+
+            <h2>Dodajte recenziju</h2>
+            <p class="guideline">Vaše mišljenje nam mnogo znači</p>
+
+            <form method="post" action="{% url 'add_review' appointment.appointment_id %}" enctype="multipart/form-data" novalidate>
+
+                {% csrf_token %}
+
+                <!-- Ocena -->
+                <div class="form-group">
+                    {{ form.rating.label_tag }}
+                    <div class="star-rating">
+                        {% for radio in form.rating %}
+                            {{ radio.tag }}
+                            <label for="{{ radio.id_for_label }}"><i class="fa fa-star"></i></label>
+                        {% endfor %}
+                    </div>
+                    {% if form.rating.errors %}
+                        <div class="form-error">{{ form.rating.errors }}</div>
+                    {% endif %}
+                </div>
+
+                <!-- Opis -->
+                <div class="form-group">
+                    {{ form.description.label_tag }}
+                    {{ form.description }}
+                    {% if form.description.errors %}
+                        <div class="form-error">{{ form.description.errors }}</div>
+                    {% endif %}
+                </div>
+
+                <!-- Fotografija -->
+                <div class="form-group">
+                    {{ form.picture.label_tag }}
+
+                    <div class="current-image-container">
+                        <div class="thumbnail-wrapper">
+                            {{ form.remove_picture }}
+
+                            <div class="image-container">
+                                <label for="{{ form.remove_picture.id_for_label }}"
+                                       class="delete-trigger-clean"
+                                       {% if not review.picture %} style="display: none;" {% endif %}>
+                                </label>
+
+                                <img src="{% if review.picture %}{{ review.picture.url }}{% else %}{% static 'images/nodog.png' %}{% endif %}"
+                                     alt="profile picture"
+                                     class="profile-thumbnail current-photo">
+
+                                <img src="{% static 'images/nodog.png' %}" alt="placeholder"
+                                     class="profile-thumbnail generic-photo-placeholder">
+                            </div>
+
+                            <div class="file-info">
+                                <span class="label-text"><strong>Trenutna fotografija:</strong></span>
+                                <span class="file-name-val">
+                                    {% if review.picture %}{{ review.filename }}{% else %}Nema fotografije{% endif %}
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="file-upload-wrapper">
+                        {{ form.picture }}
+                        <label for="photo-input" class="custom-file-upload">
+                            <i class="fa fa-upload"></i> Izaberite fotografiju
+                        </label>
+
+                        {% if form.picture.errors %}
+                            <div class="form-error">{{ form.picture.errors }}</div>
+                        {% endif %}
+                    </div>
+                </div>
+
+                <button type="submit" class="btn-submit">Pošalji</button>
+            </form>
+            <p class="redirection-link" ><a href="{% url 'my_appointments' %}">Odustani</a></p>
+        </div>
+    </div>
+
+    {% block extra_js %}
+        {% include 'includes/image_preview_js.html' %}
+    {% endblock %}
+
+{% endblock %}

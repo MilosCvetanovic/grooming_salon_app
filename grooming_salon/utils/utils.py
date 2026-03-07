@@ -1,4 +1,5 @@
 from datetime import time, date, timedelta, datetime
+from django.db.models import Avg, Count
 
 WORK_START = time(9, 0)
 WORK_END = time(17, 0)
@@ -58,5 +59,28 @@ BOOKING_SESSION_KEYS = [
 def clear_booking_session(request):
     for key in BOOKING_SESSION_KEYS:
         request.session.pop(key, None)
+
+#-----------------------------------------------------------------------------------------------------------------------
+def get_rating_summary(reviews):
+    total_reviews = reviews.count()
+    average_rating = reviews.aggregate(avg=Avg('rating'))['avg'] or 0
+    average_rating = format(round(average_rating, 1), ".1f")
+
+    rating_distribution = reviews.values('rating').annotate(count=Count('rating'))
+    rating_counts = {i: 0 for i in range(1, 6)}
+    for item in rating_distribution:
+        rating_counts[item['rating']] = item['count']
+
+    rating_summary = []
+    for star in range(5, 0, -1):
+        count = rating_counts[star]
+        percentage = round((count / total_reviews) * 100) if total_reviews > 0 else 0
+        rating_summary.append({'star': star, 'count': count, 'percentage': percentage})
+
+    return {
+        'average_rating': average_rating,
+        'total_reviews': total_reviews,
+        'rating_summary': rating_summary,
+    }
 
 #-----------------------------------------------------------------------------------------------------------------------

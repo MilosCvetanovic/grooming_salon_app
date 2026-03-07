@@ -1,7 +1,6 @@
 from django.contrib import admin
 from grooming_salon.services.models import Groomer, Service, Appointment
 
-
 # Register your models here.
 #-----------------------------------------------------------------------------------------------------------------------
 @admin.register(Groomer)

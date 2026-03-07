@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Obrišite recenziju | Mila salon{% endblock %}
+
+{% block content %}
+
+    <div class="main-container">
+
+        <div class="main-box">
+
+            <h2>Obrišite recenziju</h2>
+            <p class="guideline">Da li ste sigurni da želite da obrišete vašu recenziju za ovaj termin?</p>
+
+            <div class="delete-summary">
+
+                <p class="summary-label">Vaša ocena:</p>
+                <div class="star-display">
+                    {% for i in "12345" %}
+                        <i class="fa fa-star {% if forloop.counter <= object.rating %}active-star{% endif %}"></i>
+                    {% endfor %}
+                </div>
+
+                <!-- Opis -->
+                {% if object.description %}
+                    <p class="summary-text">"{{ object.description|truncatechars:80 }}"</p>
+                {% endif %}
+
+                <!-- Fotografija -->
+                {% if object.picture %}
+                    <img src="{{ object.picture.url }}" class="profile-thumbnail" alt="Review photo">
+                {% endif %}
+
+            </div>
+
+            <form method="post" action="{% url 'delete_review' appointment.appointment_id %}">
+
+                {% csrf_token %}
+
+                <button type="submit" class="btn-submit btn-danger">Potvrdi brisanje</button>
+            </form>
+
+            <p class="redirection-link" ><a href="{% url 'review_details' %}">Odustani</a></p>
+        </div>
+    </div>
+
+{% endblock %}

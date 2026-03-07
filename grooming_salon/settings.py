@@ -11,7 +11,6 @@ https://docs.djangoproject.com/en/6.0/ref/settings/
 """
 import os
 from pathlib import Path
-
 from django.urls import reverse_lazy
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -37,6 +36,7 @@ MY_APPS = [
     'grooming_salon.common',
     'grooming_salon.dogs',
     'grooming_salon.services',
+    'grooming_salon.reviews',
 
 ]
 

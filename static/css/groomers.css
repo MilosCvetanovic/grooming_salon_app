@@ -1,0 +1,120 @@
+.groomer-section {
+    background-color: var(--orangeLight);
+    padding: 20px 20px 60px 20px;
+    text-align: center;
+    min-height: 80vh;
+}
+
+@media (max-width: 768px) {
+  .groomer-section {
+    padding-top: 1.5rem;
+    padding-bottom: 3rem;
+  }
+}
+
+.groomer-title {
+  font-size: 42px;
+  font-weight: 800;
+  font-family: "RF Krabuler Regular", sans-serif;
+  margin-bottom: 50px;
+  color: #000;
+}
+
+@media (max-width: 1860px) {
+  .groomer-title {
+    font-size: 3rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .groomer-title {
+    font-size: 2.5rem;
+    margin-bottom: 3rem;
+  }
+}
+
+@media (max-width: 550px) {
+  .groomer-title {
+    font-size: 2rem;
+  }
+}
+
+.groomer-grid {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 6rem;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 1024px) {
+  .groomer-grid {
+    gap: 3rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .groomer-grid {
+    flex-direction: column;
+    align-items: center;
+    gap: 2.5rem;
+  }
+}
+
+.groomer-card {
+  text-align: center;
+}
+
+.groomer-card img {
+  width: 260px;
+  border-radius: 15px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+@media (max-width: 1024px) {
+  .groomer-card img {
+    width: 220px;
+  }
+}
+
+@media (max-width: 550px) {
+  .groomer-card img {
+    width: 180px;
+  }
+}
+
+.groomer-card h3 {
+  margin-top: 1.5rem;
+  font-size: 1.8rem;
+  font-weight: 900;
+}
+
+@media (max-width: 768px) {
+  .groomer-card h3 {
+    font-size: 1.5rem;
+  }
+}
+
+.btn-select {
+  margin-top: 1rem;
+  cursor: pointer;
+  border: none;
+  padding: 0.7rem 2rem;
+  border-radius: 7px;
+  background-color: var(--orange);
+  color: white;
+  font-weight: bold;
+  font-size: 1rem;
+  transition: 0.3s ease;
+}
+
+.btn-select:hover {
+  background-color: var(--orangeDark);
+}
+
+@media (max-width: 550px) {
+  .btn-select {
+    width: 160px;
+    padding: 0.8rem;
+  }
+}

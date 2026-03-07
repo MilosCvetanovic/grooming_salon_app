@@ -95,7 +95,7 @@
 
                         <a id="avatar-link" href="{% url 'profile_details' %}">
                             {% if user.profile.picture %}
-                                <img src="{{ user.profile.picture.url }}" class="profile-thumbnail">
+                                <img src="{{ user.profile.picture.url }}" class="profile-thumbnail" alt="Fotografija profila">
                             {% else %}
                                 <div class="avatar-letter profile-thumbnail">{{ user.profile.first_name|slice:":1"|upper }}</div>
                             {% endif %}

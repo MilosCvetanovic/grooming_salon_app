@@ -1,6 +1,7 @@
 import os
 from django.db import models
 from django.contrib.auth import models as auth_models, get_user_model
+from grooming_salon.accounts.managers import AppUserManager
 from grooming_salon.utils.validators import validate_capitalized_name, validate_phone_number, validate_file_size
 
 
@@ -10,6 +11,8 @@ class AppUser(auth_models.PermissionsMixin, auth_models.AbstractBaseUser):
     email = models.EmailField(null=False, blank=False, unique=True)
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
+
+    objects = AppUserManager()
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = []

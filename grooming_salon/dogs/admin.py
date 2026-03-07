@@ -5,9 +5,12 @@ from grooming_salon.dogs.models import Dog, Note
 #-----------------------------------------------------------------------------------------------------------------------
 @admin.register(Dog)
 class DogAdmin(admin.ModelAdmin):
-    list_display = ['name', 'date_of_birth', 'breed', 'slug', 'user']
-    ordering = ['id']
+    list_display = ['name', 'date_of_birth', 'breed', 'slug', 'user',]
+    ordering = ['id',]
 
+#-----------------------------------------------------------------------------------------------------------------------
 @admin.register(Note)
 class NoteAdmin(admin.ModelAdmin):
-    list_display = ['condition']
+    list_display = ['condition',]
+
+#-----------------------------------------------------------------------------------------------------------------------

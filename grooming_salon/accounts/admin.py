@@ -35,7 +35,7 @@ class AppUserAdmin(UserAdmin):
 #-----------------------------------------------------------------------------------------------------------------------
 @admin.register(Profile)
 class ProfileAdmin(admin.ModelAdmin):
-    list_display = ('user', 'first_name', 'last_name', 'phone', 'picture')
+    list_display = ('user', 'first_name', 'last_name', 'phone', 'picture',)
 
 #-----------------------------------------------------------------------------------------------------------------------
 @admin.register(Session)
@@ -43,7 +43,7 @@ class SessionAdmin(admin.ModelAdmin):
     def _session_data(self, obj):
         return obj.get_decoded()
 
-    list_display = ['session_key', '_session_data', 'expire_date']
-    readonly_fields = ['_session_data']
+    list_display = ('session_key', '_session_data', 'expire_date',)
+    readonly_fields = ('_session_data',)
 
 #-----------------------------------------------------------------------------------------------------------------------

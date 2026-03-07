@@ -1,0 +1,106 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Moji termini | Mila salon{% endblock %}
+
+{% block content %}
+    <section class="main-section-wrapper">
+
+        <section class="my-appointments-section">
+
+            <div class="container-fixed">
+                <nav aria-label="breadcrumb" class="breadcrumb-nav">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="{% url 'home' %}">Početna</a></li>
+                        <li class="breadcrumb-item"><a href="{% url 'profile_details' %}">Moj profil</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Moji termini</li>
+                    </ol>
+                </nav>
+            </div>
+
+            <div class="page-header">
+                <h1>Moji termini</h1>
+                <a href="{% url 'services' %}" class="btn-main-orange">Zakaži termin</a>
+            </div>
+
+            <div class="white-card">
+                {% if appointments %}
+                    <div class="table-responsive">
+                        <table class="appointments-table">
+                            <thead>
+                                <tr>
+                                    <th>Broj termina</th>
+                                    <th>Usluga</th>
+                                    <th>Grumer</th>
+                                    <th>Termin</th>
+                                    <th>Izabrani pas</th>
+                                    <th>Kreirano</th>
+                                    <th>Status</th>
+                                    <th>Akcija</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for appoint in appointments %}
+                                    <tr>
+                                        <td data-label="Broj termina">{{ appoint.id }}</td>
+                                        <td data-label="Usluga">{{ appoint.services.all|join:", " }}</td>
+                                        <td data-label="Grumer">{{ appoint.groomer.name }}</td>
+                                        <td data-label="Termin">{{ appoint.date|date:"d.m.Y" }} u {{ appoint.time|time:"H:i" }}h</td>
+                                        <td data-label="Izabrani pas">{{ appoint.dog.name }}</td>
+                                        <td data-label="Kreirano">{{ appoint.created_at|date:"d.m.Y" }} u {{ appoint.created_at|time:"H:i" }}h</td>
+                                        <td data-label="Status">
+                                            <span class="status-pill pill-{{ appoint.status|lower }}">
+                                                {% if appoint.status == "BOOKED" %}Zakazano
+                                                {% elif appoint.status == "COMPLETED" %}Završeno
+                                                {% else %}Otkazano{% endif %}
+                                            </span>
+                                        </td>
+                                        <td data-label="Akcija">
+                                            <div class="action-container">
+
+                                                {% if appoint.status == "BOOKED" %}
+
+                                                    <form method="post" action="{% url 'cancel_appointment' appointment_id=appoint.id %}">
+
+                                                        {% csrf_token %}
+
+                                                        <button type="submit" class="action-btn cancel-outline"
+                                                        onclick="return confirm('Da li ste sigurni da želite da otkažete termin?');">
+                                                            Otkaži termin
+                                                        </button>
+
+                                                    </form>
+
+                                                {% elif appoint.status == "COMPLETED" %}
+
+                                                    {% if appoint.review %}
+                                                        <a href="{% url 'review_details' %}" class="action-btn review-status">
+                                                            Recenzija dodata
+                                                        </a>
+                                                    {% else %}
+                                                        <a href="{% url 'add_review' appointment_id=appoint.id %}" class="action-btn review-outline">
+                                                            Dodaj recenziju
+                                                        </a>
+                                                    {% endif %}
+
+                                                {% else %}
+                                                    <span class="no-action">-</span>
+                                                {% endif %}
+                                            </div>
+                                        </td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                {% else %}
+                    <div class="empty-state-content">
+                        <img src="{% static 'images/orange-paw.svg' %}" alt="Paw Image" class="big-paw-icon">
+                        <p>Još uvek nemate zakazane termine.</p>
+                    </div>
+                {% endif %}
+            </div>
+        </section>
+    </section>
+
+{% endblock %}

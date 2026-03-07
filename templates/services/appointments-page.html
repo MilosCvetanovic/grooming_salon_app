@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Izaberite termin | Mila salon{% endblock %}
+
+{% block content %}
+
+    <section class="appointment-section">
+
+        <div class="container-fixed">
+            <nav aria-label="breadcrumb" class="breadcrumb-nav">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{% url 'home' %}">Početna</a></li>
+                    <li class="breadcrumb-item"><a href="{% url 'services' %}">Izaberite uslugu</a></li>
+                    <li class="breadcrumb-item"><a href="{% url 'groomers' %}">Izaberite grumera</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Izaberite termin</li>
+                </ol>
+            </nav>
+        </div>
+
+        <h1 class="appointment-title">Izaberite termin</h1>
+
+        <!-- DATUMI -->
+        <div class="dates">
+            {% for d in dates %}
+                {% if d == selected_date %}
+                    <a href="?" class="date-btn active">
+                {% else %}
+                    <a href="?date={{ d|date:'Y-m-d' }}" class="date-btn">
+                {% endif %}
+                    {{ d|date:"D"|capfirst|cut:"." }} <br>
+                    {{ d|date:"d" }}
+                </a>
+            {% endfor %}
+        </div>
+
+        <!-- SATI -->
+        {% if selected_date %}
+            <div class="slots">
+                {% for slot in all_slots %}
+                    {% with slot_str=slot|time:"H:i" %}
+
+                        {# 1. Proveri da li je slot zauzet i isključi ga ako jeste #}
+                        {% if slot in unavailable_times %}
+                            <button class="slot-btn disabled" disabled>{{ slot_str }}</button>
+
+                        {# 2. Proveri da li je slot već prošao i isključi ga ako jeste#}
+                        {% elif selected_date == today and slot <= current_time %}
+                            <button class="slot-btn disabled" disabled>{{ slot_str }}</button>
+
+                        {# 3. Slot je dostupan za zakazivanje #}
+                        {% else %}
+                            {% if selected_time == slot_str %}
+                                <a href="?date={{ selected_date|date:'Y-m-d' }}" class="slot-label active">{{ slot_str }}</a>
+                            {% else %}
+                                <a href="?date={{ selected_date|date:'Y-m-d' }}&time={{ slot_str }}" class="slot-label">{{ slot_str }}</a>
+                            {% endif %}
+                        {% endif %}
+
+                    {% endwith %}
+                {% endfor %}
+            </div>
+        {% endif %}
+
+        <form method="post" action="{% url 'appointments' %}">
+
+            {% csrf_token %}
+
+            <!-- Prikaži dugme za potvrdu samo ako su izabrani i datum i vreme -->
+            {% if selected_date and selected_time %}
+                <button type="submit" class="confirm-btn">Potvrdite termin</button>
+            {% endif %}
+
+        </form>
+
+    </section>
+
+{% endblock %}

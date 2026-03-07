@@ -1,0 +1,180 @@
+* {
+  box-sizing: border-box;
+}
+
+.appointment-section {
+    background-color: var(--orangeLight);
+    padding: 20px 20px 60px 20px;
+    text-align: center;
+    min-height: 80vh;
+}
+
+@media (max-width: 768px) {
+  .appointment-section {
+    padding-top: 1.5rem;
+    padding-bottom: 3rem;
+  }
+}
+
+.appointment-title {
+  font-size: 42px;
+  font-weight: 800;
+  font-family: "RF Krabuler Regular", sans-serif;
+  margin-bottom: 50px;
+  color: #000;
+}
+
+@media (max-width: 1860px) {
+  .appointment-title {
+    font-size: 3rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .appointment-title {
+    font-size: 2.5rem;
+    margin-bottom: 3rem;
+  }
+}
+
+@media (max-width: 550px) {
+  .appointment-title {
+    font-size: 2rem;
+  }
+}
+
+/* ------------------------------------------------------------------------------------------------------------------ */
+.dates,
+.slots {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 30px;
+  justify-content: center;
+}
+
+.date-btn,
+.slot-btn {
+  text-decoration: none;
+  padding: 15px 20px;
+  border-radius: 20px;
+  background: white;
+  color: black;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  min-width: 100px;
+  text-align: center;
+  font-weight: 500;
+}
+
+.slot-btn,
+.slot-label {
+  font-family: inherit;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.date-btn.active,
+.slot-btn.active {
+  background-color: var(--orange);
+  color: white;
+}
+
+.date-btn:hover:not(.active),
+.slot-btn:hover:not(.active) {
+  background-color: var(--orange);
+  color: white;
+}
+
+.slot-btn.disabled {
+  background-color: #f8f8f8;
+  color: #b3b5b3;
+  border: none;
+  cursor: default;
+  pointer-events: none;
+  opacity: 0.7;
+  box-shadow: none;
+}
+
+.slot-label {
+  display: inline-block;
+  padding: 10px 15px;
+  border-radius: 20px;
+  background: white;
+  cursor: pointer;
+  min-width: 100px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.slot-label input[type="radio"] {
+  display: none;
+}
+
+.slot-label:hover {
+  background-color: var(--orange);
+  color: white;
+}
+
+.slot-label {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 15px 20px;
+  border-radius: 20px;
+  background: white;
+  cursor: pointer;
+  min-width: 100px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  text-align: center;
+}
+
+.slot-label input[type="radio"] {
+  display: none;
+}
+
+.slot-label:has(input[type="radio"]:checked) {
+  background-color: var(--orange);
+  color: white;
+}
+
+/* ------------------------------------------------------------------------------------------------------------------ */
+.confirm-btn {
+  margin-top: 20px;
+  padding: 15px 30px;
+  border-radius: 5px;
+  border: none;
+  background-color: var(--orange);
+  color: white;
+  font-size: 1.2rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+}
+
+.confirm-btn:hover {
+  background-color: var(--orangeDark);
+}
+
+.error {
+  color: red;
+  margin-top: 5px;
+}
+
+@media (max-width: 550px) {
+  .date-btn,
+  .slot-btn,
+  .slot-label {
+    padding: 10px 15px;
+    font-size: 0.9rem;
+    min-width: 80px;
+  }
+}
+
+.slot-label.active {
+  background-color: var(--orange);
+  color: white;
+}
+
+/* ------------------------------------------------------------------------------------------------------------------ */

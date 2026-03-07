@@ -1,0 +1,201 @@
+.my-appointments-section {
+    background-color: var(--orangeLight);
+    padding: 20px 20px 60px 20px;
+    min-height: 80vh;
+}
+
+.page-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    margin-bottom: 40px;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.page-header h1 {
+    font-size: 42px;
+    font-weight: 800;
+    font-family: "RF Krabuler Regular", sans-serif;
+}
+
+.btn-main-orange {
+    position: absolute;
+    right: 0;
+    background-color: var(--orange);
+    color: white;
+    padding: 8px 20px;
+    border-radius: 20px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 14px;
+    transition: 0.3s;
+}
+
+.btn-main-orange:hover {
+    background-color: var(--orangeDark);
+    color: white;
+}
+
+.white-card {
+    background: #ffffff;
+    border-radius: 25px;
+    padding: 30px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.02);
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.appointments-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.appointments-table th {
+    padding: 12px;
+    border-bottom: 2px solid rgba(0,0,0,0.06);
+    font-size: 14px;
+    font-weight: 700;
+    color: #444;
+}
+
+.appointments-table td {
+    padding: 15px 8px;
+    text-align: center;
+    vertical-align: middle;
+    font-size: 14px;
+    border-bottom: 1px solid rgba(0,0,0,0.06);
+}
+
+.appointments-table tbody tr:nth-child(even) {
+    background-color: #fffbf7;
+}
+
+.status-pill,
+.action-btn {
+    width: 110px;
+    height: 32px;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    text-decoration: none !important;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+.review-status:hover {
+    color: #aaa;
+}
+
+.pill-booked { background-color: #e8f7ee; color: #28a745; }
+.pill-finished { background-color: #fef4e8; color: var(--orange); }
+.pill-cancelled { background-color: #fdf2f2; color: #d9534f; }
+
+.action-container {
+    display: flex;
+    justify-content: center;
+}
+
+.action-btn {
+    cursor: pointer;
+    background-color: white;
+    transition: 0.2s;
+    line-height: 1;
+    border: none;
+}
+
+.cancel-outline { border: 1px solid #dc3545; color: #dc3545; }
+.review-outline { border: 1px solid var(--orange); color: var(--orange); }
+.review-status { border: 1px solid #aaa; color: #aaa; }
+
+.action-btn:hover {
+    background-color: #fafafa;
+    transform: translateY(-1px);
+}
+
+.empty-state-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 60px 0;
+    gap: 15px;
+}
+
+.big-paw-icon {
+    width: 70px;
+    opacity: 0.9;
+}
+
+.empty-state-content p {
+    font-size: 18px;
+    color: #777;
+    margin: 0;
+}
+
+@media (max-width: 768px) {
+
+    .page-header {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .btn-main-orange {
+        position: static;
+        width: 100%;
+        text-align: center;
+    }
+
+    .appointments-table,
+    .appointments-table thead,
+    .appointments-table tbody,
+    .appointments-table th,
+    .appointments-table td,
+    .appointments-table tr {
+        display: block;
+        width: 100%;
+    }
+
+    .appointments-table thead {
+        display: none;
+    }
+
+    .appointments-table tr {
+        border: 1px solid rgba(0,0,0,0.06);
+        margin-bottom: 15px;
+        border-radius: 12px;
+        padding: 15px;
+        background: #fff;
+    }
+
+    .appointments-table td {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        text-align: left;
+        padding: 8px 0;
+        border: none;
+        font-size: 13px;
+    }
+
+    .appointments-table td::before {
+        content: attr(data-label);
+        font-weight: 700;
+        color: #555;
+        margin-right: 15px;
+    }
+
+    .status-pill,
+    .action-btn,
+    .review-status {
+        margin-left: auto;
+    }
+
+    .action-container {
+        justify-content: flex-end;
+    }
+}

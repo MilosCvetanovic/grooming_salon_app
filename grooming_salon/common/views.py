@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.views.generic import TemplateView
-
+from grooming_salon.services.models import Service
 
 # Create your views here.
 #-----------------------------------------------------------------------------------------------------------------------

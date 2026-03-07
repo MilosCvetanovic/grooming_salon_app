@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Uspešno zakazivanje | Mila salon{% endblock %}
+
+{% block content %}
+
+    <div class="success-container-inner">
+        <div class="success-card">
+            <div class="success-header">
+                <h1 class="success-title">Uspešno ste zakazali termin</h1>
+                <p class="success-subtitle">Detalji vašeg zakazanog termina</p>
+                <a href="/" class="ds-close-x">&times;</a>
+            </div>
+
+            <div class="success-info-list">
+                <div class="info-item">
+                    <span class="info-label">✂️ Usluga</span>
+                    <span class="info-value">
+                        {% for service in services %}{{ service.name }}{% if not forloop.last %}, {% endif %}{% endfor %}
+                    </span>
+                </div>
+
+                <div class="info-item">
+                    <span class="info-label">👤 Grumer</span>
+                    <span class="info-value">{{ groomer.name }}</span>
+                </div>
+
+                <div class="info-item">
+                    <span class="info-label">🕒 Termin</span>
+                    <span class="info-value">{{ date_display }} u {{ time_display }}h</span>
+                </div>
+
+                <div class="info-item">
+                    <span class="info-label">🐶 Izabrani pas</span>
+                    <span class="info-value">{{ dog.name }} ({{ dog.breed }}, {{ dog.age }}
+                        {% if dog.age == 1 %}
+                            godina)
+                        {% elif dog.age >= 2 and dog.age <= 4 %}
+                            godine)
+                        {% else %}
+                            godina)
+                        {% endif %}
+                    </span>
+                </div>
+
+                <div class="info-item">
+                    <span class="info-label">❗ Napomena</span>
+                    <span class="info-value">
+                        {% if notes_display %}
+                            {{ notes_display|join:", " }}
+                        {% else %}
+                            Nema napomene
+                        {% endif %}
+                    </span>
+                </div>
+            </div>
+
+            <div class="success-footer">
+                <h2 class="hvala-text">Hvala na poverenju!</h2>
+                <p class="vidimo-se">Vidimo se u salonu!</p>
+                <div class="footer-logo-wrap">
+                    <img src="{% static 'images/happy-dog.png' %}" alt="happy dog" class="happy-dog-img">
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

@@ -53,10 +53,10 @@ class ProfileEditView(LoginRequiredMixin, PermissionRequiredMixin, UserOwnedMode
         return super().form_valid(form)
 
 #-----------------------------------------------------------------------------------------------------------------------
-class AppUserDetailView(LoginRequiredMixin, PermissionRequiredMixin, UserOwnedModelMixin, DetailView):
+class AppUserDetailView(LoginRequiredMixin,  UserOwnedModelMixin, DetailView):
     model = UserModel
     template_name = 'accounts/profile-details-page.html'
-    permission_required = 'accounts.view_profile'
+    # permission_required = 'accounts.view_profile'
 
     # UserOwned Mixin nam dobavlja filtriran queryset za ulogovanog korisnika
     def get_object(self, queryset=None):

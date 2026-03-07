@@ -1,0 +1,188 @@
+.success-container-inner {
+    padding: 80px 20px;
+    display: flex;
+    justify-content: center;
+    background-color: var(--orangeLight);
+}
+
+.success-card {
+    background: #ffffff;
+    padding: 50px;
+    border-radius: 24px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+    width: 100%;
+    max-width: 640px;
+    position: relative;
+    text-align: left;
+}
+
+.success-header {
+    border-bottom: 1px solid #eee;
+    padding-bottom: 20px;
+    margin-bottom: 30px;
+}
+
+.success-title {
+    font-size: 32px;
+    font-weight: 800;
+    color: #000;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.success-subtitle {
+    font-size: 16px;
+    color: #666;
+    margin-top: 8px;
+    text-align: center;
+}
+
+.ds-close-x {
+    position: absolute;
+    top: 20px;
+    right: 25px;
+    font-size: 42px;
+    text-decoration: none;
+    color: black;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.ds-close-x:hover {
+    color: var(--orange);
+    transform: scale(1.1);
+}
+
+.success-info-list {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+    margin-bottom: 45px;
+}
+
+.info-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+}
+
+.info-label {
+    min-width: 150px;
+    font-weight: 800;
+    font-size: 18px;
+    color: #000;
+}
+
+.info-value {
+    font-size: 17px;
+    color: #333;
+    line-height: 1.5;
+    word-break: break-word;
+}
+
+.success-footer {
+    text-align: center;
+    border-top: 1px solid #eee;
+    padding-top: 35px;
+}
+
+.hvala-text {
+    color: var(--orange);
+    font-size: 34px;
+    font-weight: 800;
+    margin: 0 0 8px 0;
+}
+
+.vidimo-se {
+    font-size: 16px;
+    font-weight: 700;
+    color: #000;
+    margin-bottom: 25px;
+}
+
+.footer-logo-wrap {
+    display: flex;
+    justify-content: center;
+}
+
+.happy-dog-img {
+    max-width: 250px;
+    width: 100%;
+    height: auto;
+}
+
+@media (max-width: 992px) {
+    .success-card {
+        padding: 40px 30px;
+    }
+
+    .success-title {
+        font-size: 28px;
+    }
+
+    .hvala-text {
+        font-size: 28px;
+    }
+}
+
+@media (max-width: 600px) {
+
+    .success-container-inner {
+        padding: 40px 15px;
+    }
+
+    .success-card {
+        padding: 25px 20px;
+        border-radius: 18px;
+    }
+
+    .ds-close-x {
+        font-size: 34px;
+        top: 15px;
+        right: 18px;
+    }
+
+    .info-item {
+        flex-direction: column;
+        gap: 4px;
+    }
+
+    .info-label {
+        min-width: unset;
+        font-size: 15px;
+    }
+
+    .info-value {
+        font-size: 15px;
+    }
+
+    .hvala-text {
+        font-size: 24px;
+    }
+
+    .vidimo-se {
+        font-size: 14px;
+    }
+
+    .happy-dog-img {
+        max-width: 180px;
+    }
+}
+
+@media (max-width: 400px) {
+
+    .success-title {
+        font-size: 22px;
+    }
+
+    .success-subtitle {
+        font-size: 14px;
+    }
+
+    .ds-close-x {
+        font-size: 30px;
+    }
+}

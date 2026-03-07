@@ -1,0 +1,76 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Izaberite psa | Mila salon{% endblock %}
+
+{% block content %}
+
+    <div class="ds-booking-container">
+
+        <div class="container-fixed">
+            <nav aria-label="breadcrumb" class="breadcrumb-nav">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{% url 'home' %}">Početna</a></li>
+                    <li class="breadcrumb-item"><a href="{% url 'services' %}">Izaberite uslugu</a></li>
+                    <li class="breadcrumb-item"><a href="{% url 'groomers' %}">Izaberite grumera</a></li>
+                    <li class="breadcrumb-item"><a href="{% url 'appointments' %}">Izaberite termin</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Izaberite psa</li>
+                </ol>
+            </nav>
+        </div>
+
+        <div class="ds-selection-wrapper">
+            <div class="ds-selection-card">
+                <h1 class="ds-title">Završite zakazivanje</h1>
+                <p class="ds-subtitle">Da biste potvrdili svoje zakazivanje, izaberite psa i dodajte napomenu, ako je potrebna</p>
+
+                <form method="POST" action="{% url 'dog_selection' %}">
+
+                    {% csrf_token %}
+
+                    <div class="ds-field-group">
+                        <div class="ds-select-wrapper">
+
+                            <select name="selected_dog" class="ds-dog-select" required>
+                                <option value="" disabled selected>Izaberite psa</option>
+                                {% for dog in dogs %}
+                                    <option value="{{ dog.id }}">{{ dog.name }}</option>
+                                {% endfor %}
+                            </select>
+
+                        </div>
+                    </div>
+
+                    <div class="ds-notes-section">
+                        <h2 class="ds-notes-header">Napomena</h2>
+
+                        <div class="ds-checkbox-list">
+
+                            {% for note in available_notes %}
+                                <div class="ds-note-item">
+
+                                    <label class="ds-checkbox-label">
+                                        <input type="checkbox" name="selected_notes" value="{{ note.id }}"
+                                               class="ds-real-checkbox {% if note.condition == 'Drugo' %}ds-other-trigger{% endif %}">
+                                        <span class="ds-custom-box"></span>
+                                        <span class="ds-note-text">{{ note.condition }}</span>
+                                    </label>
+
+                                    {% if note.condition == 'Drugo' %}
+                                        <div class="ds-other-input-wrapper">
+                                            <textarea name="note_other_text" class="ds-other-textarea" placeholder="Opišite detaljnije..."></textarea>
+                                        </div>
+                                    {% endif %}
+
+                                </div>
+                            {% endfor %}
+
+                        </div>
+                    </div>
+                    <button type="submit" class="ds-submit-btn">Potvrdi</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

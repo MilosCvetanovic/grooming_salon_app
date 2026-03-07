@@ -4,6 +4,12 @@
 @import 'profile.css';
 @import 'error.css';
 @import 'dog.css';
+@import 'services.css';
+@import 'groomers.css';
+@import 'appointments.css';
+@import 'selection.css';
+@import 'confirmation.css';
+@import 'my_appointments.css';
 
 /* ------------------------------------------------------------------------------------------------------------------ */
 /* ============================= */
@@ -58,7 +64,7 @@
 }
 
 .breadcrumb-item a:hover {
-    color: #f3811f;
+    color: var(--orange);
     text-decoration: underline;
 }
 

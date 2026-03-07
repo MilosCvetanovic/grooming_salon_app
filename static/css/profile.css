@@ -3,7 +3,7 @@
 /* ============================= */
 
 .profile-container {
-    background-color: #fde9d2;
+    background-color: var(--orangeLight);
     padding: 20px 20px 60px 20px;
 }
 
@@ -122,7 +122,7 @@
 }
 
 .add-dog-btn {
-    background-color: #f3811f;
+    background-color: var(--orange);
     color: #fff;
     padding: 10px 20px;
     border-radius: 25px;
@@ -133,7 +133,7 @@
 }
 
 .add-dog-btn:hover {
-    background-color: #d26900;
+    background-color: var(--orangeDark);
     color: white;
 }
 
@@ -277,7 +277,7 @@
 /* ============================= */
 
 .avatar-letter {
-    background-color: #f3811f;
+    background-color: var(--orange);
     color: #ffffff;
     font-weight: 900;
     font-size: 1.4rem;
@@ -377,7 +377,7 @@
 
 .logout-btn:hover {
     background-color: #fffaf5;
-    color: #f3811f;
+    color: var(--orange);
 }
 
 .logout-btn i {
@@ -435,7 +435,7 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    background-color: #f3811f;
+    background-color: var(--orange);
     color: white;
     padding: 12px 20px;
     border-radius: 8px;
@@ -447,7 +447,7 @@
 }
 
 .btn-stay:hover {
-    background-color: #d26900;
+    background-color: var(--orangeDark);
     color: white;
 }
 

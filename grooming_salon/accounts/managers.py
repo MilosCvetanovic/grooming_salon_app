@@ -1,5 +1,6 @@
 from django.contrib.auth import models as auth_models
 
+# Create your managers here
 #-----------------------------------------------------------------------------------------------------------------------
 # Pravimo custom manager kako bismo pregazili username sa email
 class AppUserManager(auth_models.BaseUserManager):

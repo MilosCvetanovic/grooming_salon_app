@@ -4,7 +4,7 @@
     align-items: center;
     justify-content: center;
     padding: 60px 20px;
-    background-color: #fde9d2;
+    background-color: var(--orangeLight);
     min-height: 80vh;
 }
 
@@ -101,13 +101,13 @@
 }
 
 .btn-edit {
-    background-color: #f3811f;
+    background-color: var(--orange);
     color: white;
     transition: all 0.3s ease;
 }
 
 .btn-edit:hover {
-    background-color: #d26900;
+    background-color: var(--orangeDark);
     color: white;
 }
 

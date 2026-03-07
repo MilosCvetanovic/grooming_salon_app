@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Izaberite uslugu | Mila salon{% endblock %}
+
+{% block content %}
+
+    <section class="services-section">
+        <div class="services-container">
+
+            <div class="container-fixed">
+                <nav aria-label="breadcrumb" class="breadcrumb-nav">
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item"><a href="{% url 'home' %}">Početna</a></li>
+                        <li class="breadcrumb-item active" aria-current="page">Izaberite uslugu</li>
+                    </ol>
+                </nav>
+            </div>
+
+            <h1 class="services-title">Izaberite uslugu</h1>
+
+            <form method="post" action="{% url 'services' %}">
+
+                {% csrf_token %}
+
+                <div class="services-grid">
+                    {% for service in services %}
+                        <div class="service-item">
+
+                            <input type="checkbox"
+                                   name="services"
+                                   value="{{ service.id }}"
+                                   id="service_{{ service.id }}"
+                                   class="service-checkbox"
+                                   {% if service.id|stringformat:"s" in selected_services %}checked{% endif %}>
+
+                            <label for="service_{{ service.id }}" class="service-card">
+                                <div class="check-badge">
+                                    <img src="{% static 'images/orange-check.svg' %}" alt="Selected">
+                                </div>
+                                <img src="{{ service.picture.url }}" alt="Slika usluge" class="main-service-icon">
+                                <p>{{ service.name|linebreaksbr }}</p>
+                            </label>
+
+                        </div>
+                    {% endfor %}
+                </div>
+
+                <div class="submit-container">
+                    <button type="submit" class="btn-continue">Nastavi</button>
+                </div>
+            </form>
+        </div>
+    </section>
+
+{% endblock %}

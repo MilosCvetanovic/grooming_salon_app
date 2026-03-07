@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Izaberite grumera | Mila salon{% endblock %}
+
+{% block content %}
+
+    <section class="groomer-section">
+
+        <div class="container-fixed">
+            <nav aria-label="breadcrumb" class="breadcrumb-nav">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="{% url 'home' %}">Početna</a></li>
+                    <li class="breadcrumb-item"><a href="{% url 'services' %}">Izaberite uslugu</a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Izaberite grumera</li>
+                </ol>
+            </nav>
+        </div>
+
+        <h1 class="groomer-title">Izaberite grumera</h1>
+
+        <div class="groomer-grid">
+            {% for groomer in groomers %}
+                <div class="groomer-card">
+
+                    <img src="{{ groomer.picture.url }}" alt="{{ groomer.name }}">
+
+                    <h3>{{ groomer.name }}</h3>
+
+                    <form method="post" action="{% url 'groomers' %}">
+
+                        {% csrf_token %}
+
+                        <input type="hidden" name="groomer_id" value="{{ groomer.id }}">
+
+                        <button type="submit" class="btn-select">Izaberite</button>
+                    </form>
+
+                </div>
+            {% endfor %}
+        </div>
+    </section>
+
+{% endblock %}
+
+
+

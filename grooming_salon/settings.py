@@ -36,6 +36,8 @@ MY_APPS = [
     'grooming_salon.accounts',
     'grooming_salon.common',
     'grooming_salon.dogs',
+    'grooming_salon.services',
+
 ]
 
 INSTALLED_APPS = [
@@ -65,7 +67,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'django.middleware.locale.LocaleMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
+    # 'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'grooming_salon.urls'

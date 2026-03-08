@@ -7,7 +7,7 @@ from grooming_salon.accounts.models import Profile
 UserModel = get_user_model()
 
 #-----------------------------------------------------------------------------------------------------------------------
-# Registracija korisnika ce trigerovati Django signal da napravi prazan profil
+# Registracija korisnika će trigerovati Django signal da napravi prazan profil
 @receiver(post_save, sender=UserModel)
 def create_profile(sender, instance, created, **kwargs):
     # Kreiraj profil
@@ -15,7 +15,7 @@ def create_profile(sender, instance, created, **kwargs):
         Profile.objects.create(user=instance)
 
         # Dodaj korisnika u User grupu
-        user_group, _ = Group.objects.get_or_create(name='User')
-        instance.groups.add(user_group)
+        # user_group, _ = Group.objects.get_or_create(name='User')
+        # instance.groups.add(user_group)
 
 #-----------------------------------------------------------------------------------------------------------------------

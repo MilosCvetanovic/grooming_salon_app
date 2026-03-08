@@ -1,0 +1,12 @@
+[
+  {"model": "services.service", "pk": 1, "fields": {"name": "Šišanje", "picture": "images/services/sisanje.png"}},
+  {"model": "services.service", "pk": 2, "fields": {"name": "Šišanje bez kupanja", "picture": "images/services/sisanje-bez-kupanja.png"}},
+  {"model": "services.service", "pk": 3, "fields": {"name": "Kupanje", "picture": "images/services/kupanje.png"}},
+  {"model": "services.service", "pk": 4, "fields": {"name": "Higijenski tretman", "picture": "images/services/higijenski-tretman.png"}},
+  {"model": "services.service", "pk": 5, "fields": {"name": "Raščetkavanje", "picture": "images/services/rascetkavanje.png"}},
+  {"model": "services.service", "pk": 6, "fields": {"name": "Feniranje", "picture": "images/services/feniranje.png"}},
+  {"model": "services.service", "pk": 7, "fields": {"name": "Furminiranje", "picture": "images/services/furminiranje.png"}},
+  {"model": "services.service", "pk": 8, "fields": {"name": "Čišćenje ušiju", "picture": "images/services/ciscenje-usiju.png"}},
+  {"model": "services.service", "pk": 9, "fields": {"name": "Sečenje noktiju", "picture": "images/services/secenje-noktiju.png"}},
+  {"model": "services.service", "pk": 10, "fields": {"name": "Tretman protiv parazita", "picture": "images/services/tretman-protiv-parazita.png"}}
+]

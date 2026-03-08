@@ -1,0 +1,7 @@
+[
+  {"model": "dogs.note", "pk": 1, "fields": {"condition": "Agresivan"}},
+  {"model": "dogs.note", "pk": 2, "fields": {"condition": "Alergičan"}},
+  {"model": "dogs.note", "pk": 3, "fields": {"condition": "Plašljiv"}},
+  {"model": "dogs.note", "pk": 4, "fields": {"condition": "Povređen"}},
+  {"model": "dogs.note", "pk": 5, "fields": {"condition": "Drugo"}}
+]

@@ -37,7 +37,7 @@ MY_APPS = [
     'grooming_salon.dogs',
     'grooming_salon.services',
     'grooming_salon.reviews',
-
+    'grooming_salon.notifications_api.apps.NotificationsApiConfig'
 ]
 
 INSTALLED_APPS = [
@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
 ] + MY_APPS
 
 REST_FRAMEWORK = {

@@ -1,0 +1,230 @@
+/* Wrapper */
+#notification-wrapper {
+    position: relative;
+    display: inline-block;
+}
+
+/* ------------------------------------------------------------------------------------------------------------------ */
+/* Zvonce dugme */
+#notification-bell {
+    position: relative;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.4rem 0.5rem;
+    color: inherit;
+    display: flex;
+    align-items: center;
+    border-radius: 8px;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+#notification-bell i {
+    font-size: 1.3rem;
+    color: #555;
+    transition: color 0.2s ease, transform 0.3s ease;
+}
+
+#notification-bell:hover {
+    background-color: rgba(0, 0, 0, 0.06);
+}
+
+#notification-bell:hover i {
+    color: #ff851b;
+    transform: rotate(15deg);
+}
+
+#notification-bell:active i {
+    transform: rotate(0deg) scale(0.9);
+}
+
+/* ------------------------------------------------------------------------------------------------------------------ */
+/* Badge (broj nepročitanih) */
+#unread-badge {
+    display: none;
+    position: absolute;
+    top: -4px;
+    right: -4px;
+    background-color: #e74c3c;
+    color: #fff;
+    font-size: 0.65rem;
+    font-weight: 700;
+    min-width: 17px;
+    height: 17px;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 17px;
+    padding: 0 3px;
+    box-shadow: 0 0 0 2px #fff;
+    pointer-events: none;
+}
+
+#unread-badge.visible {
+    display: block;
+}
+
+/* ------------------------------------------------------------------------------------------------------------------ */
+/* Dropdown */
+#notification-dropdown {
+    display: none;
+    position: absolute;
+    right: 0;
+    top: calc(100% + 8px);
+    width: 320px;
+    background-color: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.10);
+    z-index: 1000;
+    overflow: hidden;
+    animation: dropdownFadeIn 0.15s ease;
+}
+
+#notification-dropdown.open {
+    display: block;
+}
+
+@keyframes dropdownFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-6px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ------------------------------------------------------------------------------------------------------------------ */
+/* Header dropdown-a */
+.notification-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid #e0e0e0;
+    background-color: #f9f9f9;
+}
+
+.notification-header strong {
+    font-size: 0.95rem;
+    color: #333;
+}
+
+#mark-all-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 0.8rem;
+    color: #3498db;
+    padding: 0;
+    transition: color 0.2s ease;
+}
+
+#mark-all-btn:hover {
+    color: #1a6fa8;
+    text-decoration: underline;
+}
+
+/* ------------------------------------------------------------------------------------------------------------------ */
+/* Lista notifikacija */
+#notification-list {
+    max-height: 360px;
+    overflow-y: auto;
+}
+
+.no-notifications {
+    text-align: center;
+    padding: 1.5rem;
+    color: #999;
+    font-size: 0.9rem;
+    margin: 0;
+}
+
+/* ------------------------------------------------------------------------------------------------------------------ */
+/* Pojedinacna notifikacija */
+.notification-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid #f0f0f0;
+    transition: background-color 0.2s;
+    gap: 0.5rem;
+}
+
+.notification-item:last-child {
+    border-bottom: none;
+}
+
+.notification-item.unread {
+    background-color: #eef6ff;
+}
+
+.notification-item.read {
+    background-color: #fff;
+    opacity: 0.75;
+}
+
+.notification-item:hover {
+    background-color: #f5f5f5;
+}
+
+.notification-message {
+    font-size: 0.875rem;
+    color: #333;
+    margin: 0;
+    flex: 1;
+    line-height: 1.4;
+}
+
+/* ------------------------------------------------------------------------------------------------------------------ */
+/* Akcijska dugmad */
+.notification-actions {
+    display: flex;
+    gap: 0.4rem;
+    flex-shrink: 0;
+}
+
+.btn-mark-read,
+.not-btn-delete {
+    background: none;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.8rem;
+    padding: 0.2rem 0.4rem;
+    transition: background-color 0.2s ease, border-color 0.2s ease, transform 0.15s ease;
+}
+
+.btn-mark-read {
+    color: #27ae60;
+    border-color: #27ae60;
+}
+
+.btn-mark-read:hover {
+    background-color: #27ae60;
+    color: #fff;
+    transform: scale(1.05);
+}
+
+.not-btn-delete {
+    color: #e74c3c;
+    border-color: #e74c3c;
+}
+
+.not-btn-delete:hover {
+    background-color: #e74c3c;
+    color: #fff;
+    transform: scale(1.05);
+}
+
+/* ------------------------------------------------------------------------------------------------------------------ */
+/* Poravnanje zvonceta sa profilom */
+#buttons {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+/* ------------------------------------------------------------------------------------------------------------------ */

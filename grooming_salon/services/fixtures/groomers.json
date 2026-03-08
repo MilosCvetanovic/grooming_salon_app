@@ -1,0 +1,4 @@
+[
+  {"model": "services.groomer", "pk": 1, "fields": {"name": "Mila", "picture": "images/groomers/groomer1.png"}},
+  {"model": "services.groomer", "pk": 2, "fields": {"name": "Natalija", "picture": "images/groomers/groomer2.jpg"}}
+]

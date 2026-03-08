@@ -130,3 +130,5 @@ document.addEventListener('DOMContentLoaded', function () {
     // Učitaj badge odmah kada se stranica otvori
     fetchNotifications();
 });
+
+/*--------------------------------------------------------------------------------------------------------------------*/

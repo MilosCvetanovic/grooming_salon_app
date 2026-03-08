@@ -1,7 +1,9 @@
 from django import forms
 from django.contrib.auth import get_user_model
-from grooming_salon.accounts.models import Profile
+from grooming_salon.accounts.models import Profile, EmailVerificationToken
 from django.contrib.auth.forms import UserCreationForm, AuthenticationForm, UserChangeForm
+
+from grooming_salon.utils.utils import send_verification_email
 from grooming_salon.utils.validators import validate_capitalized_name
 from grooming_salon.utils.mixins import RemovePictureMixin
 
@@ -43,6 +45,10 @@ class AppUserCreationForm(UserCreationForm):
 
         if commit:
             profile.save()
+
+            # Kreiraj verifikacioni token i pošalji email
+            token = EmailVerificationToken.objects.create(user=user)
+            send_verification_email(user, token.token)
 
         return user
 

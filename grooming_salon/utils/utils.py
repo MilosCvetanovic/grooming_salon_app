@@ -1,5 +1,8 @@
 from datetime import time, date, timedelta, datetime
+import requests
 from django.db.models import Avg, Count
+from django.conf import settings
+from django.template.loader import render_to_string
 
 WORK_START = time(9, 0)
 WORK_END = time(17, 0)
@@ -82,5 +85,30 @@ def get_rating_summary(reviews):
         'total_reviews': total_reviews,
         'rating_summary': rating_summary,
     }
+
+#-----------------------------------------------------------------------------------------------------------------------
+def send_verification_email(user, token):
+    verification_url = f'{settings.FRONTEND_URL}/accounts/verify/{token}/'
+
+    html_content = render_to_string(
+        'email_service/verification_email.html',
+        {
+            'profile_name': user.profile.get_profile_name,
+            'verification_url': verification_url,
+        }
+    )
+
+    response = requests.post(
+        f'https://api.mailgun.net/v3/{settings.MAILGUN_DOMAIN}/messages',
+        auth=('api', settings.MAILGUN_API_KEY),
+        data={
+            'from': f'Mila Salon za šišanje pasa <postmaster@{settings.MAILGUN_DOMAIN}>',
+            'to': f"{user.profile.get_profile_name} <{user.email}>",
+            'subject': "✅ Potvrdite vašu email adresu",
+            'html': html_content,
+        }
+    )
+
+    return response
 
 #-----------------------------------------------------------------------------------------------------------------------

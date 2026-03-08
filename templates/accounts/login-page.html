@@ -16,6 +16,32 @@
             </nav>
         </div>
 
+        <!-- Prikazujemo poruke obaveštenja/upozorenja ukoliko ih ima -->
+
+        {% if messages %}
+          {% for message in messages %}
+            <div class="alert {{ message.tags }}" role="alert">
+
+              <div class="alert-icon">
+                {% if message.tags == 'success' %}
+                  <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
+                {% elif message.tags == 'warning' %}
+                  <svg viewBox="0 0 24 24"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 .49-3.5"/></svg>
+                {% else %}
+                  <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+                {% endif %}
+              </div>
+
+              <div class="alert-body">
+                <span class="alert-title">{{ message | safe }}</span>
+              </div>
+
+              <button class="alert-close" onclick="this.parentElement.remove()" aria-label="Zatvori">×</button>
+
+            </div>
+          {% endfor %}
+        {% endif %}
+
         <div class="main-box">
 
             <h2>Prijavite se</h2>

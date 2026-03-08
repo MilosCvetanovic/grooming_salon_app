@@ -11,11 +11,21 @@ https://docs.djangoproject.com/en/6.0/ref/settings/
 """
 import os
 from pathlib import Path
+from django.contrib.messages import constants as messages
 from django.urls import reverse_lazy
+from dotenv import load_dotenv
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+
+MESSAGE_TAGS = {
+    messages.DEBUG: 'debug',
+    messages.INFO: 'info',
+    messages.SUCCESS: 'success',
+    messages.WARNING: 'warning',
+    messages.ERROR: 'error',
+}
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/6.0/howto/deployment/checklist/
@@ -31,7 +41,10 @@ ALLOWED_HOSTS = ["*"]
 # MAILGUN konfiguracija
 MAILGUN_API_KEY = os.getenv('MAILGUN_API_KEY')
 MAILGUN_DOMAIN = 'sandbox4e3db6bd39264af599c6e7faf685fc04.mailgun.org'
-FRONTEND_URL = 'http://localhost:8000'  # mijenjaj za produkciju
+FRONTEND_URL = 'http://localhost:8000'
+
+# Load ENVIRONMENT variable
+load_dotenv()
 
 # Application definition
 

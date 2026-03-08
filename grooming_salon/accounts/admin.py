@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.contrib.auth import get_user_model
 from django.contrib.auth.admin import UserAdmin
 from django.contrib.sessions.models import Session
-from grooming_salon.accounts.models import Profile
+from grooming_salon.accounts.models import Profile, EmailVerificationToken
 from grooming_salon.accounts.forms import AppUserCreationForm, AppUserChangeForm
 
 UserModel = get_user_model()
@@ -47,3 +47,6 @@ class SessionAdmin(admin.ModelAdmin):
     readonly_fields = ('_session_data',)
 
 #-----------------------------------------------------------------------------------------------------------------------
+@admin.register(EmailVerificationToken)
+class EmailVerificationTokenAdmin(admin.ModelAdmin):
+    list_display = ('user', 'token', 'created_at',)

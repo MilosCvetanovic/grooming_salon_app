@@ -17,6 +17,15 @@
             </nav>
         </div>
 
+        <!-- Prikazujemo poruke obaveštenja/upozorenja ukoliko ih ima -->
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert {{ message.tags }}">
+                    {{ message }}
+                </div>
+            {% endfor %}
+        {% endif %}
+
         <div class="main-box">
 
             <h2>Registrujte se</h2>

@@ -5,9 +5,10 @@ from django.contrib.auth.views import LoginView, LogoutView, PasswordChangeView,
 from django.http import HttpResponseRedirect
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
+from django.utils.safestring import mark_safe
 from django.views.generic import CreateView, UpdateView, DetailView, DeleteView
 from grooming_salon.accounts.forms import AppUserCreationForm, AppUserLoginForm, ProfileEditForm
-from grooming_salon.accounts.models import Profile
+from grooming_salon.accounts.models import Profile, EmailVerificationToken
 from grooming_salon.utils.mixins import UserOwnedModelMixin, ImageCleanupMixin
 
 UserModel = get_user_model()
@@ -66,7 +67,7 @@ class AppUserDetailView(LoginRequiredMixin, PermissionRequiredMixin, UserOwnedMo
     def get_object(self, queryset=None):
         return self.get_queryset().get()
 
-    # Dovlacimo podatke o psima preko related_name 'dogs'
+    # Dovlačimo podatke o psima preko related_name 'dogs'
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['dogs'] = self.object.dogs.all()
@@ -88,5 +89,29 @@ class AppUserDeleteView(LoginRequiredMixin, PermissionRequiredMixin, UserOwnedMo
         user.delete()
 
         return redirect(self.get_success_url())
+
+#-----------------------------------------------------------------------------------------------------------------------
+def verify_email(request, token):
+    try:
+        verification = EmailVerificationToken.objects.select_related('user').get(token=token)
+
+        if verification.is_expired():
+            verification.delete()
+            messages.warning(request, mark_safe('Link je istekao.<br>Registrujte se ponovo.'))
+            return redirect('register')
+
+        user = verification.user
+        user.is_active = True
+        user.save()
+
+        # Obriši token - više nije potreban
+        verification.delete()
+
+        messages.success(request, mark_safe('E-mail je potvrđen!<br>Možete se prijaviti.'))
+        return redirect('login')
+
+    except EmailVerificationToken.DoesNotExist:
+        messages.error(request, mark_safe('Nevažeći verifikacioni link.'))
+        return redirect('register')
 
 #-----------------------------------------------------------------------------------------------------------------------

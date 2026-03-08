@@ -28,6 +28,10 @@ DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
 
+# MAILGUN konfiguracija
+MAILGUN_API_KEY = os.getenv('MAILGUN_API_KEY')
+MAILGUN_DOMAIN = 'sandbox4e3db6bd39264af599c6e7faf685fc04.mailgun.org'
+FRONTEND_URL = 'http://localhost:8000'  # mijenjaj za produkciju
 
 # Application definition
 

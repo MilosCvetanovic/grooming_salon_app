@@ -12,7 +12,7 @@
             <h2>Izmenite recenziju</h2>
             <p class="guideline">Izmenite vaše utiske o usluzi</p>
 
-            <form method="post" action="{% url 'edit_review' appointment.appointment_id %}" enctype="multipart/form-data">
+            <form method="post" action="{% url 'edit_review' review.appointment.id %}" enctype="multipart/form-data">
 
                 {% csrf_token %}
 

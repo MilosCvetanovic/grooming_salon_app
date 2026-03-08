@@ -130,14 +130,12 @@ AUTH_PASSWORD_VALIDATORS = [
 # https://docs.djangoproject.com/en/6.0/topics/i18n/
 
 # Podešavamo jezik na Srpski Latinica
-# LANGUAGE_CODE = 'en-us'
 LANGUAGE_CODE = 'sr-Latn'
 LANGUAGES = [
-    ("sr-latn", "Serbian Latin"),
+    ('sr-latn', 'Serbian Latin'),
 ]
 
 # Podešavamo vremensku zonu
-# TIME_ZONE = 'UTC'
 TIME_ZONE = 'Europe/Belgrade'
 
 USE_I18N = True

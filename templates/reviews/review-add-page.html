@@ -12,7 +12,7 @@
             <h2>Dodajte recenziju</h2>
             <p class="guideline">Vaše mišljenje nam mnogo znači</p>
 
-            <form method="post" action="{% url 'add_review' appointment.appointment_id %}" enctype="multipart/form-data" novalidate>
+            <form method="post" action="{% url 'add_review' appointment.id %}" enctype="multipart/form-data" novalidate>
 
                 {% csrf_token %}
 

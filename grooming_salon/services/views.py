@@ -112,7 +112,7 @@ class AppointmentBookingView(LoginRequiredMixin, TemplateView):
         selected_time = self.request.GET.get('time')
 
         # U sesiji čuvamo vreme kao string za dalju obradu i prikaz
-        if selected_time and selected_time in self.all_slots:
+        if selected_time:
             self.request.session['selected_time'] = selected_time
 
             return selected_time
@@ -183,7 +183,7 @@ class DogSelectionView(LoginRequiredMixin, UserOwnedModelMixin, ListView):
 
         groomer_id = request.session.get('selected_groomer')
 
-        selected_date_str = request.sesion.get('selected_date')
+        selected_date_str = request.session.get('selected_date')
         selected_time_str = request.session.get('selected_time')
 
         selected_date = datetime.strptime(selected_date_str, '%Y-%m-%d').date()
@@ -191,10 +191,10 @@ class DogSelectionView(LoginRequiredMixin, UserOwnedModelMixin, ListView):
 
         # Proveravamo da li su svi neophodni podaci dostupni za kreiranje termina (napomena je opciona)
         if not all([service_ids, groomer_id, selected_date, selected_time, dog_id]):
-            return render(request, self.template_name, {
-                **self.get_context_data(),
-                'error': 'Nedostaju podaci za zakazivanje. Molimo pokušajte ponovo.'
-            })
+            self.object_list = self.get_queryset()
+            context = self.get_context_data()
+            context['error'] = 'Nedostaju podaci za zakazivanje. Molimo pokušajte ponovo.'
+            return render(request, self.template_name, context)
 
         try:
             # Dohvatamo izabranog psa za konkretnog korisnika
@@ -237,10 +237,10 @@ class DogSelectionView(LoginRequiredMixin, UserOwnedModelMixin, ListView):
             return redirect('confirmation')
 
         except IntegrityError:
-            return render(request, self.template_name, {
-                **self.get_context_data(),
-                'error': 'Nažalost, ovaj termin je upravo zauzet.'
-            })
+            self.object_list = self.get_queryset()
+            context = self.get_context_data()
+            context['error'] = 'Nažalost, ovaj termin je upravo zauzet.'
+            return render(request, self.template_name, context)
 
 #-----------------------------------------------------------------------------------------------------------------------
 class ConfirmAppointmentView(LoginRequiredMixin, TemplateView):
@@ -269,7 +269,7 @@ class ConfirmAppointmentView(LoginRequiredMixin, TemplateView):
         if dog_id:
             context['dog'] = Dog.objects.filter(id=dog_id).first()
 
-        context['date_display'] = self.request.session.get('selected_date')
+        context['date_display'] = self.request.session.get('selected_date_display')
         context['time_display'] = self.request.session.get('selected_time')
         context['notes_display'] = self.request.session.get('selected_notes')
 

@@ -20,6 +20,12 @@
 
             <h1>Moj profil</h1>
 
+            {% if messages %}
+                {% for message in messages %}
+                    <script>setTimeout(function() {alert("{{ message }}");}, 100);</script>
+                {% endfor %}
+            {% endif %}
+
             <div class="user-info">
                 <div class="profile-img">
                     {% if user.profile.picture %}

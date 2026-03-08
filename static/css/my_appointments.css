@@ -93,7 +93,7 @@
 }
 
 .pill-booked { background-color: #e8f7ee; color: #28a745; }
-.pill-finished { background-color: #fef4e8; color: var(--orange); }
+.pill-completed { background-color: #fef4e8; color: var(--orange); }
 .pill-cancelled { background-color: #fdf2f2; color: #d9534f; }
 
 .action-container {
@@ -113,8 +113,11 @@
 .review-outline { border: 1px solid var(--orange); color: var(--orange); }
 .review-status { border: 1px solid #aaa; color: #aaa; }
 
+.cancel-outline:hover { background-color: #fdf2f2; }
+.review-outline:hover { background-color: #fef4e8; }
+.review-status:hover { background-color: #f6f6f6; }
+
 .action-btn:hover {
-    background-color: #fafafa;
     transform: translateY(-1px);
 }
 

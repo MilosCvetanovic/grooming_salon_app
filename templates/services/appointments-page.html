@@ -41,7 +41,7 @@
                     {% with slot_str=slot|time:"H:i" %}
 
                         {# 1. Proveri da li je slot zauzet i isključi ga ako jeste #}
-                        {% if slot in unavailable_times %}
+                        {% if slot in unavailable_slots %}
                             <button class="slot-btn disabled" disabled>{{ slot_str }}</button>
 
                         {# 2. Proveri da li je slot već prošao i isključi ga ako jeste#}

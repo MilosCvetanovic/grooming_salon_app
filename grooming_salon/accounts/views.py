@@ -1,6 +1,7 @@
+from django.contrib import messages
 from django.contrib.auth import get_user_model
 from django.contrib.auth.mixins import LoginRequiredMixin, PermissionRequiredMixin
-from django.contrib.auth.views import LoginView, LogoutView, PasswordChangeView
+from django.contrib.auth.views import LoginView, LogoutView, PasswordChangeView, PasswordChangeDoneView
 from django.http import HttpResponseRedirect
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
@@ -29,10 +30,13 @@ class AppUserLogoutView(LogoutView):
     pass
 
 #-----------------------------------------------------------------------------------------------------------------------
-class AppUserPasswordChangeView(LoginRequiredMixin, PermissionRequiredMixin, PasswordChangeView):
+class AppUserPasswordChangeView(LoginRequiredMixin, PasswordChangeView):
     template_name = 'accounts/password-change-page.html'
     success_url = reverse_lazy('profile_details')
-    permission_required = 'accounts/change_profile'
+
+    def form_valid(self, form):
+        messages.success(self.request, 'Lozinka je uspešno promenjena!')
+        return super().form_valid(form)
 
 class ProfileEditView(LoginRequiredMixin, PermissionRequiredMixin, UserOwnedModelMixin, ImageCleanupMixin, UpdateView):
     model = Profile
@@ -73,7 +77,7 @@ class AppUserDeleteView(LoginRequiredMixin, PermissionRequiredMixin, UserOwnedMo
     model = UserModel
     template_name = 'accounts/profile-delete-page.html'
     success_url = reverse_lazy('home')
-    permission_required = 'accounts/delete_profile'
+    permission_required = 'accounts/delete_user'
 
     # UserOwned Mixin nam dobavlja filtriran queryset za ulogovanog korisnika
     def get_object(self, queryset=None):

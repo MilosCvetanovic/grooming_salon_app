@@ -3,10 +3,14 @@ from django import forms
 #-----------------------------------------------------------------------------------------------------------------------
 # Mixin za dodavanje opcije brisanja slike (X) u add/edit formama
 class RemovePictureMixin:
-    remove_picture = forms.BooleanField(
-        required=False,
-        widget=forms.CheckboxInput(attrs={'class': 'delete-checkbox'})
-    )
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['remove_picture'] = (
+            forms.BooleanField(
+                required=False,
+                widget=forms.CheckboxInput(attrs={'class': 'delete-checkbox'})
+            )
+        )
 
 #-----------------------------------------------------------------------------------------------------------------------
 # Mixin za osiguravanje da korisnik može videti i menjati samo svoje podatke, nikada tuđe.

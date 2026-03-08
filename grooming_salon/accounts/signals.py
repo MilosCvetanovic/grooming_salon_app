@@ -15,7 +15,7 @@ def create_profile(sender, instance, created, **kwargs):
         Profile.objects.create(user=instance)
 
         # Dodaj korisnika u User grupu
-        # user_group, _ = Group.objects.get_or_create(name='User')
-        # instance.groups.add(user_group)
+        user_group, _ = Group.objects.get_or_create(name='User')
+        instance.groups.add(user_group)
 
 #-----------------------------------------------------------------------------------------------------------------------

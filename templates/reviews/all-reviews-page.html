@@ -57,7 +57,11 @@
                     <div class="card-header">
 
                         <div class="user-block">
-                            <img src="{{ review.appointment.user.profile.picture.url }}" class="profile-thumbnail" alt="Fotografija profila">
+                            {% if review.appointment.user.profile.picture %}
+                                <img src="{{ review.appointment.user.profile.picture.url }}" class="profile-thumbnail" alt="Fotografija profila">
+                            {% else %}
+                                <img src="{% static 'images/profilephotogeneric.png' %}" class="profile-thumbnail" alt="Fotografija profila">
+                            {% endif %}
                             <div class="user-text">
                                 <strong class="name">{{ review.appointment.user.profile.get_profile_name }}</strong>
                                 <span class="date">{{ review.created_at|date:"d.m.Y" }}</span>

@@ -18,13 +18,7 @@
         </div>
 
         <!-- Prikazujemo poruke obaveštenja/upozorenja ukoliko ih ima -->
-        {% if messages %}
-            {% for message in messages %}
-                <div class="alert {{ message.tags }}">
-                    {{ message }}
-                </div>
-            {% endfor %}
-        {% endif %}
+        {% include 'includes/warning_messages.html' %}
 
         <div class="main-box">
 

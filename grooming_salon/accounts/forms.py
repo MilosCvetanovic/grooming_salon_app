@@ -46,7 +46,7 @@ class AppUserCreationForm(UserCreationForm):
         if commit:
             profile.save()
 
-            # Kreiraj verifikacioni token i pošalji email
+            # Kreiraj verifikacioni token i pošalji email asinhrono
             token = EmailVerificationToken.objects.create(user=user)
             send_verification_email(user, token.token)
 

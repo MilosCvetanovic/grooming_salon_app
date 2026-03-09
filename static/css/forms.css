@@ -423,17 +423,19 @@ input[name="remove_picture"]:checked ~ .image-container .generic-photo-placehold
     position: relative;
     display: flex;
     align-items: center;
+    justify-content: center;
     gap: 14px;
     background: #fff;
     border-radius: 14px;
     border: 1px solid transparent;
     border-left-width: 4px;
-    padding: 16px 44px 16px 22px;
+    padding: 16px 45px;
     width: 100%;
     max-width: 350px;
     margin: 0 auto 20px auto;
     box-shadow: 0 4px 24px rgba(0,0,0,0.07), 0 1px 4px rgba(0,0,0,0.05);
     animation: slideDown 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
+    text-align: center;
 }
 
 @keyframes slideDown {
@@ -485,13 +487,17 @@ input[name="remove_picture"]:checked ~ .image-container .generic-photo-placehold
 
 /* INNER ELEMENTS */
 .alert-icon {
-  flex-shrink: 0;
-  width: 38px;
-  height: 38px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+    position: absolute;
+    left: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    flex-shrink: 0;
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .alert-icon svg {
@@ -505,21 +511,31 @@ input[name="remove_picture"]:checked ~ .image-container .generic-photo-placehold
 }
 
 .alert-body {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centira elemente unutar kolone */
+    justify-content: center;
+    width: 100%;
 }
 
 .alert-title {
   font-size: 15px;
   font-weight: 700;
   letter-spacing: 0.01em;
+    text-align: center;
 }
 
 .alert-sub {
   font-size: 13px;
   font-weight: 300;
   letter-spacing: 0.02em;
+    text-align: center;
+}
+
+.alert-title, .alert-sub {
+    display: block;
+    text-align: center;
+    margin: 0;
 }
 
 .alert-close {

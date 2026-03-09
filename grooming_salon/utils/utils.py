@@ -1,5 +1,7 @@
+import asyncio
+import threading
+import aiohttp
 from datetime import time, date, timedelta, datetime
-import requests
 from django.db.models import Avg, Count
 from django.conf import settings
 from django.template.loader import render_to_string
@@ -87,28 +89,49 @@ def get_rating_summary(reviews):
     }
 
 #-----------------------------------------------------------------------------------------------------------------------
-def send_verification_email(user, token):
+# Asinhrona funkcija za slanje verification email-a prilikom registracije
+async def send_verification_email_async(user, token):
     verification_url = f'{settings.FRONTEND_URL}/accounts/verify/{token}/'
+
+    profile_name = user.profile.get_profile_name
 
     html_content = render_to_string(
         'email_service/verification_email.html',
         {
-            'profile_name': user.profile.get_profile_name,
+            'profile_name': profile_name,
             'verification_url': verification_url,
-        }
-    )
+            }
+        )
 
-    response = requests.post(
-        f'https://api.mailgun.net/v3/{settings.MAILGUN_DOMAIN}/messages',
-        auth=('api', settings.MAILGUN_API_KEY),
-        data={
-            'from': f'Mila Salon za šišanje pasa <postmaster@{settings.MAILGUN_DOMAIN}>',
-            'to': f"{user.profile.get_profile_name} <{user.email}>",
-            'subject': "✅ Potvrdite vašu email adresu",
-            'html': html_content,
-        }
-    )
+    url=f'https://api.mailgun.net/v3/{settings.MAILGUN_DOMAIN}/messages'
+    auth = aiohttp.BasicAuth(login='api', password=settings.MAILGUN_API_KEY)
+    data={
+        'from': f'Mila Salon za šišanje pasa <postmaster@{settings.MAILGUN_DOMAIN}>',
+        'to': f'{profile_name} <{user.email}>',
+        'subject': '✅ Potvrdite vašu email adresu',
+        'html': html_content,
+    }
 
-    return response
+    async with aiohttp.ClientSession() as session:
+        async with session.post(url, auth=auth, data=data) as response:
+            status = response.status
+            response_text = await response.text()
+            print(f'Status: {status} | Response: {response_text}')
+
+#-----------------------------------------------------------------------------------------------------------------------
+def send_verification_email(user, token):
+    _ = user.profile.get_profile_name
+
+    def run_async_loop(data, tkn):
+        loop = asyncio.new_event_loop()
+        asyncio.set_event_loop(loop)
+        try:
+            loop.run_until_complete(send_verification_email_async(data, tkn))
+        finally:
+            loop.close()
+
+    # Pokrećemo u novom threadu kako ne bismo blokirali Django
+    thread = threading.Thread(target=run_async_loop, args=(user, token))
+    thread.start()
 
 #-----------------------------------------------------------------------------------------------------------------------

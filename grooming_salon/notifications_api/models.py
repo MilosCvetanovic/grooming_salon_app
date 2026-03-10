@@ -14,9 +14,10 @@ class Notification(models.Model):
         APPOINTMENT_COMPLETED = 'appointment_completed', 'Appointment Completed'
         APPOINTMENT_CANCELLED = 'appointment_canceled', 'Appointment Canceled'
         APPOINTMENT_REMINDER = 'appointment_reminder', 'Appointment Reminder'
+        VOUCHER_CREATED = 'voucher_created', 'Voucher Created'
 
     user = models.ForeignKey(UserModel, on_delete=models.CASCADE, related_name='notifications')
-    appointment = models.ForeignKey(Appointment, on_delete=models.CASCADE, related_name='notifications')
+    appointment = models.ForeignKey(Appointment, on_delete=models.CASCADE, related_name='notifications', null=True, blank=True)
     notification_type = models.CharField(max_length=MAX_LENGTH, choices=NotificationType)
     message = models.TextField()
     is_read = models.BooleanField(default=False)

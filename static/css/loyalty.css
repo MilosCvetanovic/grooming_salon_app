@@ -1,42 +1,12 @@
-/*!* Osnovni stil za loyalty dugme da prati tvoje ostale gumbe *!*/
-/*.loyalty-btn {*/
-/*    display: inline-flex;*/
-/*    align-items: center;*/
-/*    gap: 8px;*/
-/*    padding: 10px 20px;*/
-/*    border-radius: 8px;*/
-/*    font-weight: 600;*/
-/*    text-decoration: none;*/
-/*    transition: all 0.3s ease;*/
-/*}*/
-
-/*!* Boja za učlanjenje *!*/
-/*.loyalty-btn.join {*/
-/*    background-color: #d4a373; !* Topla boja salona *!*/
-/*    color: white;*/
-/*}*/
-
-/*!* Boja za Dashboard (može biti malo drugačija da se razlikuje) *!*/
-/*.loyalty-btn.dashboard {*/
-/*    background-color: #333;*/
-/*    color: #ffd700; !* Zlatna zvezdica *!*/
-/*    border: 1px solid #ffd700;*/
-/*}*/
-
-/*.loyalty-btn:hover {*/
-/*    transform: translateY(-2px);*/
-/*    box-shadow: 0 4px 10px rgba(0,0,0,0.15);*/
-/*    opacity: 0.9;*/
-/*}*/
-
-/* ------------------------------------------------------------------------------------------------------------------ */
-/* Loyalty Dashboard */
 .loyalty-container {
-    margin-top: 40px;
-    background: #fff;
-    border-radius: 20px;
-    padding: 30px;
-    box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+    max-width: 1200px;
+    margin: 20px auto;
+    background-color: white;
+    border-radius: 22px;
+    padding: 50px 60px;
+    align-items: stretch;
+    gap: 50px;
+    position: relative;
 }
 
 .loyalty-grid {
@@ -47,32 +17,37 @@
 }
 
 .loyalty-info-card {
-    background: #fdfaf7;
+    background: #fff9f0;
     padding: 20px;
     border-radius: 12px;
     text-align: center;
-    border: 1px solid #e9d8c4;
+    border: 2px solid #fceecb;
 
 }
 
-.info-label { display: block; color: #777; font-size: 0.9rem; }
-.info-value { font-size: 1.8rem; font-weight: 700; color: var(--orange) }
+.loyalty-info-label { display: block; color: #444; font-size: 1rem; }
+.loyalty-info-value { font-size: 1.8rem; font-weight: 700; color: var(--orange) }
 
-/* Progress bar */
 .progress-bar-bg {
-    background: #eee;
-    height: 10px;
-    border-radius: 5px;
-    margin-top: 10px;
-}
-.progress-bar-fill {
-    background: var(--orange);
-    height: 100%;
-    border-radius: 5px;
-    transition: width 0.6s ease;
+    background: #f0f0f0;
+    height: 12px;
+    border-radius: 20px;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    overflow: hidden;
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.05);
 }
 
-/* Modal vaučer stil */
+.progress-bar-fill {
+    background: linear-gradient(90deg, #f39c12, var(--orange));
+    height: 100%;
+    border-radius: 20px;
+    transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 2px 4px rgba(230, 126, 34, 0.2);
+}
+
+/* ------------------------------------------------------------------------------------------------------------------ */
 .voucher-modal {
     display: none;
     position: fixed;
@@ -91,28 +66,57 @@
     max-width: 300px;
 }
 
+.voucher-ticket p {
+    color: var(--orange);
+    font-weight: 700;
+}
+
+.voucher-ticket h3 {
+    color: #333;
+    font-size: 1.4rem;
+    margin-bottom: 5px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
 .discount-code {
-    font-size: 1.5rem;
-    font-weight: 900;
-    letter-spacing: 2px;
-    margin: 20px 0;
-    padding: 10px;
+    font-family: 'Courier New', Courier, monospace;
+    font-size: 1.8rem;
+    font-weight: 800;
+    letter-spacing: 3px;
+    margin: 25px 0;
+    padding: 15px;
     background: #fff;
-    border: 1px solid #ddd;
-}
-
-/* Razmak između gornjeg info dela i dashboarda */
-.loyalty-container {
-    max-width: 1200px; /* Prilagodi širini tvoje glavne bele kartice */
-    margin: 20px auto; /* Auto na marginama ga centrira */
-    background: #fff;
-    border-radius: 15px;
-    padding: 25px;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
     border: 1px solid #eee;
+    color: #000;
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.05);
+    border-radius: 8px;
 }
 
-/* Dashboard naslov i dugme "Napusti" u istom redu */
+.close-modal {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 32px;
+    line-height: 1;
+    text-decoration: none;
+    color: #333;
+    font-weight: 400;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.close-modal:hover {
+    color: var(--orange);
+    transform: scale(1.1);
+}
+
+.small-print {
+    font-size: 0.9rem;
+    color: #666;
+    margin-top: 10px;
+}
+/* ------------------------------------------------------------------------------------------------------------------ */
 .loyalty-header {
     display: flex;
     justify-content: space-between;
@@ -122,12 +126,204 @@
     padding-bottom: 15px;
 }
 
+/* ------------------------------------------------------------------------------------------------------------------ */
 .btn-leave {
-    background: none;
-    border: 1px solid #ff4d4d;
-    color: #ff4d4d;
-    padding: 5px 12px;
+    background: transparent;
+    border: 1.5px solid #ececec;
+    color: #a0a0a0;
+    padding: 6px 16px;
+    border-radius: 50px;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1.2px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn-leave:hover {
+    border-color: #ff5e5e;
+    color: #ff5e5e;
+    background-color: rgba(255, 94, 94, 0.03);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
+}
+
+.btn-leave::before {
+    content: '\f2ed'; /* FontAwesome ikonica kante za smeće */
+    font-family: 'Font Awesome 6 Free';
+    font-weight: 900;
+    font-size: 10px;
+}
+
+/* ------------------------------------------------------------------------------------------------------------------ */
+.reward-ready {
+    background: #fff9f0;
+    border: 2px solid #fceecb;
+    border-radius: 15px;
+    padding: 20px 0;
+    text-align: center;
+    margin: 20px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+.reward-ready p {
+    color: black;
+    font-weight: 600;
+    font-size: 1rem;
+    margin-bottom: 15px;
+    letter-spacing: 0.5px;
+}
+
+.reward-pending {
+    margin-top: 30px;
+    padding: 10px 0;
+    text-align: left;
+}
+
+.reward-pending p {
+    font-size: 1rem;
+    color: #444;
+    margin-bottom: 12px;
+}
+
+.reward-pending strong {
+    color: var(--orange, #f39c12);
+    font-weight: 700;
+}
+
+.claim-btn {
+    background: var(--orange, #f39c12);
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    border-radius: 50px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(243, 156, 18, 0.3);
+    transition: all 0.3s ease;
+}
+
+.claim-btn:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(243, 156, 18, 0.4);
+    background: #e67e22;
+}
+
+/* Pulse animacija da dugme 'diše' */
+.pulse {
+    animation: pulse-animation 2s infinite;
+}
+
+@keyframes pulse-animation {
+    0% { box-shadow: 0 0 0 0px rgba(243, 156, 18, 0.4); }
+    70% { box-shadow: 0 0 0 15px rgba(243, 156, 18, 0); }
+    100% { box-shadow: 0 0 0 0px rgba(243, 156, 18, 0); }
+}
+
+/* ------------------------------------------------------------------------------------------------------------------ */
+.active-vouchers {
+    margin-top: 30px;
+    width: 100%;
+    padding: 20px 0;
+    background: #fff;
+    border-top: 1px solid #f0f0f0;
+}
+
+.vouchers-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+.active-vouchers h4 {
+    font-size: 1.1rem;
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+@media (max-width: 992px) {
+    .vouchers-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .vouchers-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .mini-voucher-card {
+        max-width: 100%;
+    }
+}
+
+/* ------------------------------------------------------------------------------------------------------------------ */
+.mini-voucher-card {
+    background: #fff9f0;
+    border: 2px dashed var(--orange, #d4a373);
+    border-radius: 12px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    transition: transform 0.2s ease;
+    flex: 0 1 calc(50% - 10px);
+    max-width: 400px;
+    min-width: 280px;
+    box-sizing: border-box;
+}
+
+.mini-voucher-card:hover {
+    transform: scale(1.02);
+}
+
+.mini-voucher-card i {
+    font-size: 1.5rem;
+    color: var(--orange, #d4a373);
+    margin-bottom: 8px;
+}
+
+.voucher-title {
+    font-weight: 700;
+    font-size: 1rem;
+    margin-bottom: 5px;
+}
+
+.voucher-code-display {
+    background: #fff;
+    border: 1px solid #ddd;
+    padding: 5px 10px;
+    font-family: monospace;
+    font-weight: bold;
+    letter-spacing: 1px;
+    margin: 10px 0;
+}
+
+.use-voucher-btn {
+    background: #333;
+    color: white;
+    border: none;
+    padding: 8px 15px;
     border-radius: 5px;
     cursor: pointer;
     font-size: 0.8rem;
+    transition: background 0.3s;
 }
+
+.use-voucher-btn:hover {
+    background: #ff4d4d;
+}
+
+/* ------------------------------------------------------------------------------------------------------------------ */

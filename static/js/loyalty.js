@@ -1,4 +1,6 @@
 async function joinLoyalty() {
+    if (!confirm("Postanite član programa lojalnosti i sakupljajte poene uz svaku rezervaciju. Da li želite da se učlanite?")) return;
+
     // Uzimamo CSRF token iz kolačića (Django standard)
     const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]')?.value
                       || getCookie('csrftoken');
@@ -25,7 +27,7 @@ async function joinLoyalty() {
     }
 }
 
-// Pomoćna funkcija za uzimanje tokena ako nije u hidden fieldu
+// Pomoćna funkcija za uzimanje tokena ako nije u hidden field-u
 function getCookie(name) {
     let cookieValue = null;
     if (document.cookie && document.cookie !== '') {
@@ -45,7 +47,6 @@ function getCookie(name) {
 function toggleLoyaltyDashboard() {
     const dashboard = document.getElementById('loyalty-dashboard-wrapper');
 
-    // Proveravamo trenutni stil. Ako je prazan ili 'none', prikazujemo ga.
     if (dashboard.style.display === 'none' || dashboard.style.display === '') {
         dashboard.style.display = 'block';
     } else {
@@ -55,7 +56,7 @@ function toggleLoyaltyDashboard() {
 /*--------------------------------------------------------------------------------------------------------------------*/
 
 async function leaveLoyalty(id) {
-    if (!confirm("Ovim brišete sve poene. Da li ste sigurni?")) return;
+    if (!confirm("Napuštanjem programa gubite sve trenutno sakupljene poene i pogodnosti. Da li ste sigurni da želite da nastavite?")) return;
 
     const response = await fetch(`/api/loyalty/${id}/`, {
         method: 'DELETE',
@@ -63,7 +64,7 @@ async function leaveLoyalty(id) {
     });
 
     if (response.ok) {
-        window.location.reload(); // Ponovo će se pojaviti dugme "Postani član"
+        window.location.reload();
     }
 }
 
@@ -86,6 +87,35 @@ async function claimVoucher(id) {
 }
 
 function closeVoucher() {
+    document.getElementById('voucher-modal').style.display = 'none';
     window.location.reload(); // Osvežavamo da se resetuju poeni na dashboardu
 }
+
+/*--------------------------------------------------------------------------------------------------------------------*/
+async function useVoucher(voucherId) {
+    if (confirm("Da li ste sigurni da želite da iskoristite ovaj vaučer? Akcija se ne može poništiti.")) {
+
+        const csrfToken = getCookie('csrftoken');
+
+        try {
+            const response = await fetch(`/api/loyalty/use-voucher/${voucherId}/`, {
+                method: 'POST',
+                headers: {
+                    'X-CSRFToken': csrfToken,
+                    'Content-Type': 'application/json'
+                }
+            });
+            const data = await response.json();
+
+            if (data.status === 'success') {
+                location.reload();
+            } else {
+                alert(data.message);
+            }
+        } catch (e) {
+            console.error(e);
+        }
+    }
+}
+
 /*--------------------------------------------------------------------------------------------------------------------*/

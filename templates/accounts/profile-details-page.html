@@ -61,11 +61,11 @@
 
                         {% if user.loyalty %}
                             <a href="javascript:void(0);" onclick="toggleLoyaltyDashboard()" class="loyalty-btn dashboard">
-                                Moji vaučeri <i class="fa-solid fa-star"></i>
+                                Program lojalnosti <i class="fa-solid fa-star"></i>
                             </a>
                         {% else %}
                             <a href="javascript:void(0);" onclick="joinLoyalty()" class="loyalty-btn join">
-                                Postani član programa lojalnosti <i class="fa-solid fa-paw"></i>
+                                Program lojalnosti <i class="fa-solid fa-star"></i>
                             </a>
                         {% endif %}
 
@@ -76,6 +76,7 @@
                 </div>
             </div>
 
+            <!-- Ukljucujemo HTML za Loyalty Dashboard ako je korisnik učlanjen -->
             {% if user.loyalty %}
                 <div id="loyalty-dashboard-wrapper" style="display: none; width: 100%; margin: 20px auto;">
                     {% include 'includes/loyalty_dashboard.html' %}
@@ -85,7 +86,7 @@
             <!-- Dodajemo CSRF token zbog POST zahteva koji šalje loyalty program -->
             {% csrf_token %}
 
-            <h2>Moji psi</h2>
+            <h2 class="dogs-heading">Moji psi</h2>
 
             <div class="dogs-list">
                 {% if dogs %}

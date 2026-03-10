@@ -74,11 +74,10 @@ class AppUserDetailView(LoginRequiredMixin, PermissionRequiredMixin, UserOwnedMo
         return context
 
 #-----------------------------------------------------------------------------------------------------------------------
-class AppUserDeleteView(LoginRequiredMixin, PermissionRequiredMixin, UserOwnedModelMixin, DeleteView):
+class AppUserDeleteView(LoginRequiredMixin, UserOwnedModelMixin, DeleteView):
     model = UserModel
     template_name = 'accounts/profile-delete-page.html'
     success_url = reverse_lazy('home')
-    permission_required = 'accounts/delete_user'
 
     # UserOwned Mixin nam dobavlja filtriran queryset za ulogovanog korisnika
     def get_object(self, queryset=None):

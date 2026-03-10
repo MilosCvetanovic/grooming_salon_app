@@ -234,6 +234,11 @@ class DogSelectionView(LoginRequiredMixin, UserOwnedModelMixin, ListView):
             request.session['selected_dog_id'] = dog.id
             request.session['selected_notes'] = session_notes
 
+            # Ako je korisnik u Loyalty programu i uspešno je zakazao termin, dodaj jedan poen
+            if hasattr(request.user, 'loyalty'):
+                request.user.loyalty.points += 1
+                request.user.loyalty.save()
+
             return redirect('confirmation')
 
         except IntegrityError:

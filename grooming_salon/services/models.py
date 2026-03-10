@@ -41,7 +41,7 @@ class Appointment(models.Model):
     services = models.ManyToManyField(Service, related_name='appointments')
     groomer = models.ForeignKey(Groomer, on_delete=models.CASCADE)
     dog = models.ForeignKey(Dog, on_delete=models.CASCADE)
-    user = models.ForeignKey(UserModel, on_delete=models.CASCADE)
+    user = models.ForeignKey(UserModel, on_delete=models.CASCADE, related_name='appointments')
 
     objects = AppointmentManager()
 

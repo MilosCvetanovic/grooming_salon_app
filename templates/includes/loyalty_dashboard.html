@@ -1,0 +1,66 @@
+<section id="loyalty-section" class="loyalty-container">
+    <div class="loyalty-content">
+        <div class="loyalty-header">
+            <h2><i class="fa-solid fa-gift"></i> Vaš Loyalty Dashboard</h2>
+            <button onclick="leaveLoyalty({{ user.loyalty.id }})" class="btn-leave">Napusti program</button>
+        </div>
+
+        <div class="loyalty-grid">
+            <div class="loyalty-info-card">
+                <span class="info-label">Sakupljeni poeni</span>
+                <span class="info-value">{{ user.loyalty.get_points_since_joining }} <i class="fa-solid fa-bone"></i></span>
+            </div>
+
+            <div class="loyalty-info-card">
+                <span class="info-label">Ukupno rezervacija</span>
+                <span class="info-value">{{ user.loyalty.appointment_count }}</span>
+            </div>
+        </div>
+
+        <div class="voucher-action-zone">
+            {% if user.loyalty.points >= 5 %}
+                <div class="reward-ready">
+                    <p>Čestitamo! Imate dovoljno poena za popust.</p>
+                    <button class="claim-btn pulse" onclick="claimVoucher({{ user.loyalty.id }})">
+                        GENERISI VAUČER 20%
+                    </button>
+                </div>
+            {% else %}
+                <div class="reward-pending">
+                    {% with points=user.loyalty.get_points_since_joining|default:0 %}
+                        {# Izračunavamo preostale termine: 5 minus trenutni poeni #}
+                        <p>Fali vam još <strong>{{ user.loyalty.remaining_until_reward }}</strong> termina do popusta.</p>
+
+                        <div class="progress-bar-bg">
+                            {# Progres bar: poeni * 20% (jer 5 * 20 = 100%) #}
+                            <div class="progress-bar-fill" style="width: {% widthratio points 1 20 %}%;"></div>
+                        </div>
+                    {% endwith %}
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</section>
+
+<div id="voucher-modal" class="voucher-modal">
+    <div class="voucher-ticket">
+        <span class="close-modal" onclick="closeVoucher()">&times;</span>
+        <div class="ticket-cutout"></div>
+        <h3>GROOMING SALON</h3>
+        <p>Vaučer za popust</p>
+        <div class="discount-code" id="display-code">------</div>
+        <p class="small-print">Pokažite ovaj kod prilikom sledeće posete.</p>
+    </div>
+</div>
+
+{% if user.loyalty.active_vouchers %}
+<div class="active-vouchers">
+    <h4>Vaši dostupni vaučeri:</h4>
+    {% for voucher in user.loyalty.active_vouchers %}
+        <div class="mini-voucher">
+            <i class="fa-solid fa-ticket"></i>
+            <span>Popust 20% - Kod: <strong>{{ voucher.code }}</strong></span>
+        </div>
+    {% endfor %}
+</div>
+{% endif %}

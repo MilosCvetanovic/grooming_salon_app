@@ -47,14 +47,14 @@ FRONTEND_URL = 'http://localhost:8000'
 load_dotenv()
 
 # Application definition
-
 MY_APPS = [
     'grooming_salon.accounts',
     'grooming_salon.common',
     'grooming_salon.dogs',
     'grooming_salon.services',
     'grooming_salon.reviews',
-    'grooming_salon.notifications_api.apps.NotificationsApiConfig'
+    'grooming_salon.notifications_api.apps.NotificationsApiConfig',
+    'grooming_salon.loyalty_api',
 ]
 
 INSTALLED_APPS = [

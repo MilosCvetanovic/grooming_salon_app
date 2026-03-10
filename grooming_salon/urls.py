@@ -33,6 +33,7 @@ urlpatterns = [
     path('services/', include('grooming_salon.services.urls')),
     path('reviews/', include('grooming_salon.reviews.urls')),
     path('api/', include('grooming_salon.notifications_api.urls')),
+    path('api/', include('grooming_salon.loyalty_api.urls')),
 ]
 
 #-----------------------------------------------------------------------------------------------------------------------

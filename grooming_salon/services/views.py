@@ -123,7 +123,7 @@ class AppointmentBookingView(LoginRequiredMixin, TemplateView):
         context = super().get_context_data(**kwargs)
         groomer = self.get_groomer()
 
-        # Dohvatamo sve termine koji su istekli i menjamo status na 'COMPLETED'
+        # Dohvatamo sve termine koji su prošli i menjamo status na 'COMPLETED'
         Appointment.objects.mark_appointment_expired(groomer)
 
         selected_date = self.handle_date_selection(groomer)

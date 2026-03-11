@@ -45,7 +45,7 @@
                             <button class="slot-btn disabled" disabled>{{ slot_str }}</button>
 
                         {# 2. Proveri da li je slot već prošao i isključi ga ako jeste#}
-                        {% elif selected_date == today and slot <= current_time %}
+                        {% elif selected_date == today and slot <= time_now %}
                             <button class="slot-btn disabled" disabled>{{ slot_str }}</button>
 
                         {# 3. Slot je dostupan za zakazivanje #}

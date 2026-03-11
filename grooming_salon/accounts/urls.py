@@ -10,7 +10,7 @@ urlpatterns = [
     path('profile/', views.AppUserDetailView.as_view(), name='profile_details'),
     path('profile/edit/', views.ProfileEditView.as_view(), name='profile_edit'),
     path('profile/delete/', views.AppUserDeleteView.as_view(), name='profile_delete'),
-    path('verify/<str:token>/', views.verify_email, name='verify-email')
+    path('verify/<str:token>/', views.verify_email, name='verify_email')
 ]
 
 #-----------------------------------------------------------------------------------------------------------------------

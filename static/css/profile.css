@@ -277,6 +277,41 @@
     }
 }
 
+@media (max-width: 1024px) {
+    .buttons {
+        flex-direction: column;
+        gap: 10px;
+    }
+}
+
+@media (max-width: 1024px) {
+    .user-info {
+        padding: 30px 30px;
+        gap: 30px;
+    }
+
+    .loyalty-container {
+        padding: 30px 30px;
+    }
+}
+
+@media (max-width: 480px) {
+    .dog-card {
+        width: 100%;
+    }
+
+    .btn-stay {
+        width: 100%;
+    }
+
+    .profile-container h1 {
+        font-size: 30px;
+    }
+
+    .profile-container > h2 {
+        font-size: 26px;
+    }
+}
 /* ------------------------------------------------------------------------------------------------------------------ */
 
 /* ============================= */

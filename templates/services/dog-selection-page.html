@@ -24,7 +24,7 @@
                 <h1 class="ds-title">Završite zakazivanje</h1>
                 <p class="ds-subtitle">Da biste potvrdili svoje zakazivanje, izaberite psa i dodajte napomenu, ako je potrebna</p>
 
-                <form method="POST" action="{% url 'dog_selection' %}">
+                <form method="post" action="{% url 'dog_selection' %}" novalidate>
 
                     {% csrf_token %}
 
@@ -37,6 +37,10 @@
                                     <option value="{{ dog.id }}">{{ dog.name }}</option>
                                 {% endfor %}
                             </select>
+
+                            {% if error %}
+                                <span class="form-error">{{ error }}</span>
+                            {% endif %}
 
                         </div>
                     </div>

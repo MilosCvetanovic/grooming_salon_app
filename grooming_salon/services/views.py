@@ -163,9 +163,6 @@ class DogSelectionView(LoginRequiredMixin, UserOwnedModelMixin, ListView):
             return redirect('appointments')
         return super().dispatch(request, *args, **kwargs)
 
-    # def get_queryset(self):
-    #     return super().get_queryset()
-
     # Dohvatamo sve napomene i šaljemo ih templejtu kroz kontekst
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -175,6 +172,13 @@ class DogSelectionView(LoginRequiredMixin, UserOwnedModelMixin, ListView):
     def post(self, request, *args, **kwargs):
         # Pripremamo sve prikupljene podatke za kreiranje termina
         dog_id = request.POST.get('selected_dog')
+
+        if not dog_id:
+            self.object_list = self.get_queryset()
+            context = self.get_context_data()
+            context['error'] = 'Molimo izaberite psa.'
+            return render(request, self.template_name, context)
+
         selected_notes_ids = request.POST.getlist('selected_notes')
         note_other_text = request.POST.get('note_other_text', '')
 
@@ -292,7 +296,7 @@ class MyAppointmentsView(LoginRequiredMixin, UserOwnedModelMixin, ListView):
         for appoint in queryset.filter(status='BOOKED').prefetch_related('services'):
             appoint.mark_completed_if_past()
 
-        # Vraćamo sortiran ceo set podataka potreban za prikaz detalja zakazanog termina
+        # Vraćamo sortiran ceo set podataka potreban za prikaz detalja svih termina
         return queryset.select_related('groomer', 'dog', 'review')\
             .prefetch_related('services')\
             .annotate(

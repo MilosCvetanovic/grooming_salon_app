@@ -1,6 +1,6 @@
 from django.contrib.auth import models as auth_models
 
-# Create your managers here
+# Create your managers here.
 #-----------------------------------------------------------------------------------------------------------------------
 # Pravimo custom manager kako bismo pregazili username sa email
 class AppUserManager(auth_models.BaseUserManager):
@@ -8,7 +8,7 @@ class AppUserManager(auth_models.BaseUserManager):
         if not email:
             raise ValueError('E-mail polje mora biti popunjeno.')
 
-        email = self.normalize_email(email)
+        email = self.normalize_email(email).lower()
         user = self.model(email=email, **extra_fields)
         user.set_password(password)
         user.save(using=self._db)

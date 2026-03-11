@@ -11,7 +11,7 @@ def validate_capitalized_name(value):
 # Validiramo da li su svi karakteri brojevi, bez razmaka, koji mogu početi sa "+"
 def validate_phone_number(value):
     if not re.fullmatch(r'\+?\d+', value):
-        raise ValidationError(message='Broj telefona mora sadržati samo cifre ili pocinjati sa "+" pa cifre.')
+        raise ValidationError(message='Broj telefona mora sadržati samo cifre ili početi sa "+" pa cifre.')
 
 #-----------------------------------------------------------------------------------------------------------------------
 # Validiramo veličinu fotografije koja se otprema

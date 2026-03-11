@@ -28,10 +28,10 @@ class Dog(models.Model):
         return self.name
 
     def save(self, *args, **kwargs):
+        super().save(*args, **kwargs)
         if not self.slug:
-            super().save(*args, **kwargs)
             self.slug = slugify(f'{self.name}-{self.id}')
-        return super().save(*args, **kwargs)
+            super().save(update_fields=['slug'])
 
     @property
     def filename(self):

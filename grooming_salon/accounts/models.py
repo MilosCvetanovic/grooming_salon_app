@@ -1,14 +1,11 @@
 import os
 import secrets
 from datetime import timedelta
-
 from django.db import models
 from django.contrib.auth import models as auth_models, get_user_model
 from django.utils import timezone
-
 from grooming_salon.accounts.managers import AppUserManager
 from grooming_salon.utils.validators import validate_capitalized_name, validate_phone_number, validate_file_size
-
 
 # Create your models here.
 #-----------------------------------------------------------------------------------------------------------------------
@@ -40,7 +37,7 @@ class Profile(models.Model):
     # Vrati puno ime i prezime
     @property
     def get_profile_name(self):
-        return f"{self.first_name} {self.last_name}"
+        return f'{self.first_name} {self.last_name}'
 
     # Atribut koji vraca ime slike bez apsolutne putanje
     @property

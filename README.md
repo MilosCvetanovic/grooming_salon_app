@@ -96,28 +96,45 @@ git clone https://github.com/MilosCvetanovic/grooming_salon_app.git
 cd grooming_salon_app
 ```
 
-**2. Open the project in PyCharm** *(recommended)*
+**2. Open the project in IDE - PyCharm** *(recommended)*
 
 **3. Install all required dependencies**
 ```bash
 pip install -r requirements.txt
 ```
 
-**4. Create a database** - open pgAdmin or directly in your IDE
+**4. Create, configure and connect to your PostgreSQL *(or other)* database**
 
-**5. Configure environment variables**
+- You can do it in pgAdmin or directly in your IDE.
+- Save your credentials.
 
-Rename `.env.template` to `.env` and fill in your credentials.
+**5. Generate your Django secret key**
 
-**5. Set up Mailgun for email support**
+- Run the Django shell:
+```bash
+python manage.py shell
+```
+- Inside the shell, run the following Python code to import and call the function:
+```python
+from django.core.management.utils import get_random_secret_key
 
-Create a free account at [mailgun.com](https://www.mailgun.com), generate an **API Key** and **Domain**, and add them to your `.env` file.
+print(get_random_secret_key())
+```
+- Save the Django secret key.
 
-**6. Configure and connect your PostgreSQL(or other) database** inside `.env`
+**6. Set up MailGun for email verification support**
+
+- Create a free account at [mailgun.com](https://www.mailgun.com), generate an **API Key** and **Domain**, and **SAVE** them.
+
+
+**7. Configure environment variables**
+
+- Rename `.env.template` to `.env` and fill in all your credentials (including **saved data** from above).
 
 **7. Apply database migrations**
 ```bash
 python manage.py makemigrations
+
 python manage.py migrate
 ```
 
@@ -131,7 +148,9 @@ python manage.py loaddata services.json groomers.json notes.json groups.json
 python manage.py runserver --insecure
 ```
 
-Application is available at → **http://127.0.0.1:8000**
+- Application is available at → **http://localhost:8000**
+
+---
 
 ## Prerequisites
 

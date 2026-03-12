@@ -9,13 +9,13 @@ from django.utils.safestring import mark_safe
 from django.views.generic import CreateView, UpdateView, DetailView, DeleteView
 from grooming_salon.accounts.forms import AppUserCreationForm, AppUserLoginForm, ProfileEditForm
 from grooming_salon.accounts.models import Profile, EmailVerificationToken
-from grooming_salon.utils.mixins import UserOwnedModelMixin, ImageCleanupMixin
+from grooming_salon.utils.mixins import UserOwnedModelMixin, ImageCleanupMixin, RedirectIfAuthenticatedMixin
 
 UserModel = get_user_model()
 
 # Create your views here.
 #-----------------------------------------------------------------------------------------------------------------------
-class AppUserRegisterView(CreateView):
+class AppUserRegisterView(RedirectIfAuthenticatedMixin, CreateView):
     model = UserModel
     form_class = AppUserCreationForm
     template_name = 'accounts/register-page.html'
@@ -31,7 +31,7 @@ class AppUserRegisterView(CreateView):
         )
         return response
 #-----------------------------------------------------------------------------------------------------------------------
-class AppUserLoginView(LoginView):
+class AppUserLoginView(RedirectIfAuthenticatedMixin, LoginView):
     form_class = AppUserLoginForm
     template_name = 'accounts/login-page.html'
 

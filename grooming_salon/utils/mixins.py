@@ -1,4 +1,8 @@
+from multiprocessing.managers import dispatch
+
 from django import forms
+from django.shortcuts import redirect
+
 
 #-----------------------------------------------------------------------------------------------------------------------
 # Mixin za dodavanje opcije brisanja slike (X) u add/edit formama
@@ -44,5 +48,15 @@ class ImageCleanupMixin:
 
             return True
         return False
+
+#-----------------------------------------------------------------------------------------------------------------------
+# Mixin koji redirektuje korisnika ako je prošao autentifikaciju
+class RedirectIfAuthenticatedMixin:
+    redirect_url = 'home'
+
+    def dispatch(self, request, *args, **kwargs):
+        if request.user.is_authenticated:
+            return redirect(self.redirect_url)
+        return super().dispatch(request, *args, **kwargs)
 
 #-----------------------------------------------------------------------------------------------------------------------

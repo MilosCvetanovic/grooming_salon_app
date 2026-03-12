@@ -1,7 +1,9 @@
 # Environment variables
 .env
 # Media files
-media/images/
+media/images/*
+!media/images/groomers
+!media/images/services
 # Migrations
 grooming_salon/accounts/migrations/*
 !grooming_salon/accounts/migrations/__init__.py

@@ -14,14 +14,15 @@ def create_profile(sender, instance, created, **kwargs):
     if created:
         Profile.objects.create(user=instance)
 
-        # Dodaj korisnika u User grupu
-        user_group, _ = Group.objects.get_or_create(name='User')
-        instance.groups.add(user_group)
+        if not instance.is_superuser:
+            # Dodaj korisnika u User grupu
+            user_group, _ = Group.objects.get_or_create(name='User')
+            instance.groups.add(user_group)
 
-        # Deaktiviraj nalog korisnika dok ne potvrdi email. Nalog se aktivira u views.py po aktivaciji
-        instance.is_active = False
-        instance.save()
+            # Deaktiviraj nalog korisnika dok ne potvrdi email. Nalog se aktivira u views.py po aktivaciji
+            instance.is_active = False
+            instance.save()
 
-        # Kreiranje verifikacionog tokena i slanje email-a se radi u formi nakon dodavanja imena i prezimena na profilu
+            # Kreiranje verifikacionog tokena i slanje email-a se radi u formi nakon dodavanja imena i prezimena na profilu
 
 #-----------------------------------------------------------------------------------------------------------------------

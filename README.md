@@ -2,7 +2,7 @@
 
 <img src="static/images/logo.svg" alt="Project Logo" width="120" height="120" />
 
-# grooming_salon_app
+# grooming_salon
 
 **This project is a sophisticated Grooming Salon Management System built with Django and Django REST Framework, featuring comprehensive user and dog profile management, a multi-step appointment booking workflow, an integrated review system for rating completed grooming services, and a full CRUD-based Loyalty Program API that tracks customer rewards and generates discount vouchers.**
 
@@ -67,7 +67,7 @@ Unlike generic booking tools or manual ledger-keeping, this solution is purpose-
 - 🧩 **Extensible** — add custom tags, clients, and rates per project
 - ⚡ **Fast** — written in Python, starts in < 5ms
 
-> **Note:** This project is under active development. Some features listed in the roadmap are not yet available. Check the [Roadmap](#roadmap) section for details.
+> **Note:** This project is under active development.
 
 ---
 
@@ -91,9 +91,10 @@ Unlike generic booking tools or manual ledger-keeping, this solution is purpose-
 
 **1. Clone the repository and navigate into the project directory**
 ```bash
-git clone https://github.com/MilosCvetanovic/grooming_salon_app.git
-
-cd grooming_salon_app
+git clone https://github.com/MilosCvetanovic/grooming_salon.git
+```
+```bash
+cd grooming_salon
 ```
 
 **2. Open the project in IDE - PyCharm** *(recommended)*
@@ -117,7 +118,9 @@ python manage.py shell
 - Inside the shell, run the following Python code to import and call the function:
 ```python
 from django.core.management.utils import get_random_secret_key
+```
 
+```python
 print(get_random_secret_key())
 ```
 - Save the Django secret key.
@@ -134,7 +137,8 @@ print(get_random_secret_key())
 **7. Apply database migrations**
 ```bash
 python manage.py makemigrations
-
+```
+```bash
 python manage.py migrate
 ```
 
@@ -148,7 +152,7 @@ python manage.py loaddata services.json groomers.json notes.json groups.json
 python manage.py runserver --insecure
 ```
 
-- Application is available at → **http://localhost:8000**
+- Application is available at → **http://127.0.0.1:8000/**
 
 ---
 
@@ -223,9 +227,9 @@ grooming_salon/
 
 **Maintainer:** Miloš Cvetanović — [@MilosCvetanovic](https://github.com/MilosCvetanovic) — milos.cvetanovic07@gmail.com
 
-**Project link:** [https://github.com/MilosCvetanovic/grooming_salon_app.git](https://github.com/MilosCvetanovic/grooming_salon_app.git)
+**Project link:** [https://github.com/MilosCvetanovic/grooming_salon.git](https://github.com/MilosCvetanovic/grooming_salon.git)
 
-**Bugs & features:** [Open an issue](https://github.com/MilosCvetanovic/grooming_salon_app/issues)
+**Bugs & features:** [Open an issue](https://github.com/MilosCvetanovic/grooming_salon/issues)
 
 **General questions:** [Contact directly](https://github.com/MilosCvetanovic)
 

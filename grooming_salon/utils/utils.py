@@ -67,11 +67,11 @@ def clear_booking_session(request):
 
 #-----------------------------------------------------------------------------------------------------------------------
 def get_rating_summary(reviews):
-    total_reviews = reviews.count()
+    total_reviews = reviews.aggregate(total=Count('id', distinct=True))['total'] or 0
     average_rating = reviews.aggregate(avg=Avg('rating'))['avg'] or 0
     average_rating = format(round(average_rating, 1), ".1f")
 
-    rating_distribution = reviews.values('rating').annotate(count=Count('rating'))
+    rating_distribution = reviews.values('rating').annotate(count=Count('id', distinct=True))
     rating_counts = {i: 0 for i in range(1, 6)}
     for item in rating_distribution:
         rating_counts[item['rating']] = item['count']

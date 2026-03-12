@@ -176,7 +176,7 @@ class DogSelectionView(LoginRequiredMixin, UserOwnedModelMixin, ListView):
         if not dog_id:
             self.object_list = self.get_queryset()
             context = self.get_context_data()
-            context['error'] = 'Molimo izaberite psa.'
+            context['error'] = 'Niste izabrali psa. Ako još uvek niste dodali psa, možete ga dodati na vašem profilu.'
             return render(request, self.template_name, context)
 
         selected_notes_ids = request.POST.getlist('selected_notes')

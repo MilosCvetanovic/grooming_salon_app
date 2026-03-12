@@ -21,6 +21,15 @@ class AppUserRegisterView(CreateView):
     template_name = 'accounts/register-page.html'
     success_url = reverse_lazy('login')
 
+    def form_valid(self, form):
+        response = super().form_valid(form)
+        messages.success(
+            self.request,
+            mark_safe('Registracija je uspešna!<br>Poslali smo link<br>za verifikaciju na e-mail.<br> '
+                      'Klikni na link da aktiviraš nalog.<br>'
+                      '(proveri spam folder)')
+        )
+        return response
 #-----------------------------------------------------------------------------------------------------------------------
 class AppUserLoginView(LoginView):
     form_class = AppUserLoginForm
@@ -103,7 +112,7 @@ def verify_email(request, token):
         user.is_active = True
         user.save()
 
-        # Obriši token - više nije potreban
+        # Brišemo token - više nije potreban
         verification.delete()
 
         messages.success(request, mark_safe('E-mail je potvrđen!<br>Možete se prijaviti.'))

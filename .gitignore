@@ -1,0 +1,18 @@
+# Environment variables
+.env
+# Media files
+media/images/
+# Migrations
+grooming_salon/accounts/migrations/*
+!grooming_salon/accounts/migrations/__init__.py
+grooming_salon/dogs/migrations/*
+!grooming_salon/dogs/migrations/__init__.py
+grooming_salon/loyalty_api/migrations/*
+!grooming_salon/loyalty_api/migrations/__init__.py
+grooming_salon/notifications_api/migrations/*
+!grooming_salon/notifications_api/migrations/__init__.py
+grooming_salon/reviews/migrations/*
+!grooming_salon/reviews/migrations/__init__.py
+grooming_salon/services/migrations/*
+!grooming_salon/services/migrations/__init__.py
+# Other...

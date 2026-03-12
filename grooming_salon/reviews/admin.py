@@ -1,5 +1,6 @@
 from django.contrib import admin
-from grooming_salon.reviews.models import Review
+from grooming_salon.reviews.models import Review, ReviewLike
+
 
 # Register your models here.
 #-----------------------------------------------------------------------------------------------------------------------
@@ -12,5 +13,11 @@ class ReviewAdmin(admin.ModelAdmin):
     @admin.display(description='User')
     def get_user(self, obj):
         return obj.appointment.user
+
+#-----------------------------------------------------------------------------------------------------------------------
+@admin.register(ReviewLike)
+class ReviewLikeAdmin(admin.ModelAdmin):
+    list_display = ('id','to_review', 'user',)
+    search_fields = ('id',)
 
 #-----------------------------------------------------------------------------------------------------------------------

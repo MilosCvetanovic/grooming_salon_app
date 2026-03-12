@@ -1,4 +1,5 @@
 from django.contrib.auth import get_user_model
+from django.contrib.messages import get_messages
 from django.db.models.signals import post_save
 from django.test import TestCase
 from django.urls import reverse
@@ -10,6 +11,26 @@ from grooming_salon.accounts.signals import create_profile
 UserModel = get_user_model()
 
 # Create your tests here.
+#-----------------------------------------------------------------------------------------------------------------------
+class AppUserRegisterViewTest(TestCase):
+
+    def test_success_message_after_registration(self):
+        response = self.client.post(reverse('register'), data={
+            'first_name': 'Milos',
+            'last_name': 'Cvetanovic',
+            'email': 'test@tmail.com',
+            'password1': 'TestPass123!',
+            'password2': 'TestPass123!',
+        })
+
+        self.assertRedirects(response, reverse('login'))
+
+        messages = list(get_messages(response.wsgi_request))
+        self.assertEqual(len(messages), 1)
+
+        # Check message content
+        self.assertIn('Registracija je uspešna!', str(messages[0]))
+
 #-----------------------------------------------------------------------------------------------------------------------
 class ProfileViewsTests(TestCase):
     def login(self):

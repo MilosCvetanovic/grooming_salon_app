@@ -43,7 +43,7 @@ ALLOWED_HOSTS = ["*"]
 # MAILGUN konfiguracija
 MAILGUN_API_KEY = os.getenv('MAILGUN_API_KEY')
 MAILGUN_DOMAIN = os.getenv('MAILGUN_DOMAIN')
-FRONTEND_URL = 'http://localhost:8000'
+FRONTEND_URL = os.getenv('FRONTEND_URL')
 
 # Application definition
 MY_APPS = [

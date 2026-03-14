@@ -18,4 +18,4 @@ grooming_salon/reviews/migrations/*
 grooming_salon/services/migrations/*
 !grooming_salon/services/migrations/__init__.py
 # Other...
-.idea
+.idea/
